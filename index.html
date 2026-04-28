@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REST ROUND™ | Global Scale Strategy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-lime: #d7df22;
+            --bg-black: #000000;
+            --dark-grey: #0a0a0a;
+            --mid-grey: #121212;
+            --border-grey: #222222;
+            --text-white: #ffffff;
+            --text-grey: #888888;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-black);
+            color: var(--text-white);
+            font-family: 'DM Sans', sans-serif;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        section {
+            min-height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 20px;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border-grey);
+        }
+
+        .slide-content {
+            max-width: 1100px;
+            width: 100%;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        section.active .slide-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .glow {
+            position: absolute;
+            width: 70vw;
+            height: 70vw;
+            max-width: 800px;
+            max-height: 800px;
+            background: radial-gradient(circle, rgba(215, 223, 34, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        h1, h2, h3, h4, .slide-title {
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        h1 { font-size: clamp(50px, 12vw, 120px); letter-spacing: -4px; margin-bottom: 20px; }
+        h1 span { color: var(--primary-lime); }
+        
+        .slide-title {
+            font-size: clamp(28px, 6vw, 64px);
+            margin-bottom: 40px;
+            border-left: 10px solid var(--primary-lime);
+            padding-left: 20px;
+            letter-spacing: -2px;
+        }
+
+        h3 { font-size: 24px; color: var(--primary-lime); margin-bottom: 12px; letter-spacing: -1px; }
+        p { font-size: 18px; line-height: 1.5; color: var(--text-grey); }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+        @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; text-align: center; } .slide-title { border-left-width: 6px; } }
+
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 100%; }
+        @media (max-width: 768px) { .grid-3 { grid-template-columns: 1fr; } }
+        
+        .card {
+            background: var(--dark-grey);
+            padding: 40px;
+            border-radius: 8px;
+            border: 1px solid var(--border-grey);
+            transition: all 0.3s ease;
+            height: 100%;
+            position: relative;
+        }
+
+        .card:hover { border-color: var(--primary-lime); background: #111; transform: translateY(-5px); }
+
+        .tag {
+            display: inline-block;
+            padding: 8px 16px;
+            background: var(--mid-grey);
+            color: var(--primary-lime);
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .highlight-text { color: var(--text-white); font-weight: 700; }
+
+        .comparison-container { width: 100%; overflow-x: auto; margin-top: 30px; -webkit-overflow-scrolling: touch; }
+        table { width: 100%; min-width: 600px; border-collapse: collapse; text-align: left; }
+        th, td { padding: 15px; border-bottom: 1px solid var(--border-grey); }
+        th { font-family: 'Montserrat'; font-size: 12px; text-transform: uppercase; color: var(--text-grey); letter-spacing: 1px; }
+        .focus-col { background: rgba(215, 223, 34, 0.05); color: var(--text-white); font-weight: 700; }
+        .check { color: var(--primary-lime); font-size: 18px; }
+        .cross { color: #333; font-size: 18px; }
+
+        .cycle-container { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+        .cycle-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: var(--dark-grey);
+            padding: 15px 20px;
+            border-radius: 6px;
+            border-left: 4px solid var(--mid-grey);
+        }
+        .cycle-time { font-family: 'Montserrat'; font-weight: 900; font-size: 18px; color: var(--primary-lime); min-width: 90px; }
+        .cycle-content h4 { font-family: 'Montserrat'; text-transform: uppercase; font-size: 14px; margin-bottom: 2px; }
+        .cycle-content p { font-size: 14px; }
+
+        .image-container {
+            width: 100%;
+            height: 450px;
+            background: var(--mid-grey);
+            border: 1px solid var(--border-grey);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #000;
+        }
+
+        .roadmap { display: flex; justify-content: space-between; position: relative; margin-top: 60px; }
+        .roadmap::before { content: ''; position: absolute; top: 30px; left: 0; width: 100%; height: 2px; background: var(--border-grey); }
+        @media (max-width: 600px) { 
+            .roadmap { flex-direction: column; gap: 40px; } 
+            .roadmap::before { display: none; }
+            .step { width: 100% !important; padding-top: 0 !important; border-left: 2px solid var(--border-grey); padding-left: 20px; }
+            .step::after { left: -10px !important; top: 0 !important; }
+        }
+        .step { position: relative; padding-top: 50px; width: 22%; }
+        .step::after { content: ''; position: absolute; top: 17px; left: 0; width: 18px; height: 18px; background: var(--primary-lime); border-radius: 50%; box-shadow: 0 0 15px var(--primary-lime); }
+
+        .nav-dots { position: fixed; right: 20px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 12px; z-index: 100; }
+        .dot { width: 8px; height: 8px; border: 1px solid #444; border-radius: 50%; cursor: pointer; }
+        .dot.active { background: var(--primary-lime); border-color: var(--primary-lime); transform: scale(1.4); }
+
+        .cta-box { background: linear-gradient(135deg, #0a0a0a 0%, #000 100%); padding: 60px; border: 1px solid var(--border-grey); text-align: center; width: 100%; border-radius: 12px; }
+        
+        .product-focus-title { font-size: clamp(40px, 8vw, 80px); margin-bottom: 10px; color: var(--text-white); }
+        .product-focus-title span { color: var(--primary-lime); }
+    </style>
+</head>
+<body>
+
+    <div class="nav-dots" id="navDots"></div>
+
+    <!-- PAGE 1: HERO -->
+    <section id="page1">
+        <div class="glow" style="top: -10%; left: -10%;"></div>
+        <div class="slide-content" style="text-align: center;">
+            <h1>REST<br><span>ROUND™</span></h1>
+            <p style="margin: 30px auto; font-size: clamp(18px, 4vw, 24px); max-width: 950px; color: var(--text-white); letter-spacing: -0.5px;">
+                High-Performance Hygiene & Recovery. <br>Engineered for Combat Athletes. <br>
+                <span style="color: var(--primary-lime); font-weight: 900;">Built for Global Dominance.</span>
+            </p>
+            <div style="height: 5px; width: 120px; background: var(--primary-lime); margin: 0 auto;"></div>
+        </div>
+    </section>
+
+    <!-- PAGE 2: PHILOSOPHY -->
+    <section id="page2">
+        <div class="slide-content">
+            <h2 class="slide-title">Protecting the Ultimate Form</h2>
+            <div class="grid-2">
+                <div class="card" style="border-color: var(--primary-lime);">
+                    <h3>Unlocking Potential</h3>
+                    <p>A fighter's <strong>"Ultimate Form"</strong> — the absolute peak of their potential — is only achievable when downtime is eliminated. Non-stop protection and recovery are the fuel for greatness.</p>
+                </div>
+                <div class="card">
+                    <h3>The 24/7 Shield</h3>
+                    <p>We provide the mandatory ritual for combat dominance. By owning the full 24/7 lifecycle, we ensure that from the moment they wake until their gear is washed, the athlete is protected. No staph. No burnout. No friction. Just performance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE 3: COMPARISON -->
+    <section id="page3">
+        <div class="slide-content">
+            <h2 class="slide-title">Market Dominance</h2>
+            <div class="comparison-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Protocol Standard</th>
+                            <th class="focus-col">REST ROUND™</th>
+                            <th>Legacy (Defense/CSH)</th>
+                            <th>Lifestyle (Onnit/Neutonic/Wilder)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Combat Bio-Defense (HOCL)</td>
+                            <td class="focus-col"><i class="fa-solid fa-check check"></i></td>
+                            <td><i class="fa-solid fa-circle-dot" style="color: #444;"></i> (Basic Soap)</td>
+                            <td><i class="fa-solid fa-xmark cross"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Performance Ritual (Nootropics)</td>
+                            <td class="focus-col"><i class="fa-solid fa-check check"></i></td>
+                            <td><i class="fa-solid fa-xmark cross"></i></td>
+                            <td><i class="fa-solid fa-check check"></i></td>
+                        </tr>
+                        <tr>
+                            <td>24/7 Integrated Ecosystem</td>
+                            <td class="focus-col"><i class="fa-solid fa-check check"></i></td>
+                            <td><i class="fa-solid fa-xmark cross"></i></td>
+                            <td><i class="fa-solid fa-check check"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Artist-Led "High-Performance" Aesthetic</td>
+                            <td class="focus-col"><i class="fa-solid fa-check check"></i></td>
+                            <td><i class="fa-solid fa-xmark cross"></i></td>
+                            <td><i class="fa-solid fa-check check"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE 4: THE TIMELINE OF THE DAY -->
+    <section id="page4">
+        <div class="slide-content">
+            <h2 class="slide-title">Fighter 24/7</h2>
+            <p style="font-size: 24px; color: var(--text-white); margin-bottom: 30px;">The Operating System for Elite Potential.</p>
+            <div class="cycle-container">
+                <div class="cycle-item">
+                    <div class="cycle-time">08:00 AM</div>
+                    <div class="cycle-content">
+                        <h4>Neural Priming</h4>
+                        <p><strong>FOCUS POUCH:</strong> Nootropic tunnel vision. High-alert cognition for the morning grind.</p>
+                    </div>
+                </div>
+                <div class="cycle-item">
+                    <div class="cycle-time">11:00 AM</div>
+                    <div class="cycle-content">
+                        <h4>Internal Hygiene</h4>
+                        <p><strong>PROBIOTIC ELECTROLYTES:</strong> Internal hygiene and skin protection from the inside out. Peak stamina fuel.</p>
+                    </div>
+                </div>
+                <div class="cycle-item">
+                    <div class="cycle-time">01:00 PM</div>
+                    <div class="cycle-content">
+                        <h4>Immediate Defense</h4>
+                        <p><strong>HOCL SPRAY & WIPES:</strong> Decontamination. Killing pathogens the second training ends.</p>
+                    </div>
+                </div>
+                <div class="cycle-item">
+                    <div class="cycle-time">09:00 PM</div>
+                    <div class="cycle-content">
+                        <h4>Precision Reset</h4>
+                        <p><strong>RECOVERY TOOLS & LAUNDRY:</strong> Precision body maintenance and gear reset for the next round.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE 5: NEURAL PRIMING -->
+    <section id="page5">
+        <div class="slide-content">
+            <div class="tag">08:00 AM — Morning Grind</div>
+            <h2 class="product-focus-title">Neural <span>Priming</span></h2>
+            <div class="grid-2">
+                <div>
+                    <h3>Focus Pouches: FIGHT IQ</h3>
+                    <p>A cognitive protocol designed for the "Ultimate Form." Engineered to eliminate reaction-time lag and mental fog during high-stakes sparring.</p>
+                    <ul style="list-style: none; margin-top: 30px;">
+                        <li style="margin-bottom: 20px;"><i class="fa-solid fa-bolt" style="color: var(--primary-lime); margin-right: 15px;"></i> <span class="highlight-text">Zero-Crash:</span> Sustain focus throughout two-a-day sessions.</li>
+                        <li style="margin-bottom: 20px;"><i class="fa-solid fa-brain" style="color: var(--primary-lime); margin-right: 15px;"></i> <span class="highlight-text">Mental Edge:</span> 200mg Nootropics for neural processing speed.</li>
+                    </ul>
+                </div>
+                <div class="image-container">
+                    <img src="image_2f9317.jpg" alt="Rest Round FIGHT IQ Focus Pouches">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE 6: INTERNAL HYGIENE -->
+    <section id="page6">
+        <div class="slide-content">
+            <div class="tag">11:00 AM — Intra-Train</div>
+            <h2 class="product-focus-title">Internal <span>Hygiene</span></h2>
+            <div class="grid-2">
+                <div class="image-container">
+                    <i class="fa-solid fa-droplet" style="font-size: 100px; color: #333;"></i>
+                </div>
+                <div>
+                    <h3>Probiotic Electrolytes</h3>
+                    <p>True combat care starts inside. Our probiotic electrolytes keep hygiene high by protecting the skin's biome from within.</p>
+                    <ul style="list-style: none; margin-top: 30px;">
+                        <li style="margin-bottom: 20px;"><i class="fa-solid fa-microbe" style="color: var(--primary-lime); margin-right: 15px;"></i> <span class="highlight-text">Skin Hygiene:</span> Active bacterial protection during heavy sweating.</li>
+                        <li style="margin-bottom: 20px;"><i class="fa-solid fa-battery-full" style="color: var(--primary-lime); margin-right: 15px;"></i> <span class="highlight-text">Ultimate Potential:</span> Preventing the "crash" to maintain peak form.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE 7: IMMEDIATE DEFENSE -->
+    <section id="page7">
+        <div class="slide-content">
+            <div class="tag">01:00 PM — Post-Mat</div>
+            <h2 class="product-focus-title">Immediate <span>Defense</span></h2>
+            <div class="grid-2">
+                <div>
+                    <h3>HOCL Spray & Wipes</h3>
+                    <p>The tactical intervention. Our HOCL-based wipes and flagship spray provide instant protection when the athlete is most vulnerable.</p>
+                    <ul style="list-style: none; margin-top: 30px;">
+                        <li style="margin-bottom: 20px;"><i class="fa-solid fa-spray-can-sparkles" style="color: var(--primary-lime); margin-right: 15px;"></i> <span class="highlight-text">Spray:</span> The medical-grade gear and skin standard.</li>
+                        <li style="margin-bottom: 20px;"><i class="fa-solid fa-box-tissue" style="color: var(--primary-lime); margin-right: 15px;"></i> <span class="highlight-text">Wipes:</span> Fast, mat-side decontamination before the shower.</li>
+                    </ul>
+                </div>
+                <div class="image-container">
+                    <img src="https://restround.co/cdn/shop/files/REST_ROUND_Combat_Gear_Skin_Spray_v2.png?v=1708420658&width=800" alt="Combat Spray">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE 8: PRECISION RESET -->
+    <section id="page8">
+        <div class="slide-content">
+            <div class="tag">09:00 PM — Hardware Maintenance</div>
+            <h2 class="product-focus-title">Precision <span>Reset</span></h2>
+            <div class="grid-3">
+                <div class="card">
+                    <div class="image-container" style="height: 200px; margin-bottom: 20px;">
+                         <img src="https://restround.co/cdn/shop/files/Callus_Remover.png?v=1708420658&width=800" alt="Callus Remover">
+                    </div>
+                    <h3>Callus Remover</h3>
+                    <p>Maintaining foot skin integrity to prevent infection entry points.</p>
+                </div>
+                <div class="card">
+                    <div class="image-container" style="height: 200px; margin-bottom: 20px;">
+                        <i class="fa-solid fa-scissors" style="font-size: 60px; color: #222;"></i>
+                    </div>
+                    <h3>Electric Clipper</h3>
+                    <p>Safety-first precision trimmers for zero-snag nails.</p>
+                </div>
+                <div class="card">
+                    <div class="image-container" style="height: 200px; margin-bottom: 20px;">
+                        <img src="https://restround.co/cdn/shop/files/Mouth_Guard_Cleaner_Tablets.png?v=1708420658&width=800" alt="Mouth Guard Cleaner">
+                    </div>
+                    <h3>Oral Reset</h3>
+                    <p>Deep-cleaning tablets for gear decontamination. Non-stop recovery.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE 9: ROADMAP -->
+    <section id="page9">
+        <div class="slide-content">
+            <h2 class="slide-title">The "July" Roadmap</h2>
+            <div class="roadmap">
+                <div class="step">
+                    <h3>APR</h3>
+                    <p><span class="highlight-text">HOCL Spray</span><br>Live.</p>
+                </div>
+                <div class="step">
+                    <h3>MAY</h3>
+                    <p><span class="highlight-text">Defense Wipes</span><br>Launch.</p>
+                </div>
+                <div class="step">
+                    <h3>JUN</h3>
+                    <p><span class="highlight-text">Laundry Sheets</span><br>Launch.</p>
+                </div>
+                <div class="step">
+                    <h3>JUL</h3>
+                    <p><span class="highlight-text">Ultimate Fuel</span><br>Sprint.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE 10: THE ASK -->
+    <section id="page10">
+        <div class="slide-content">
+            <div class="cta-box">
+                <h2 style="font-size: clamp(30px, 5vw, 60px); color: var(--text-white);">Strategic Opportunity</h2>
+                <p style="margin: 20px 0; font-size: 22px; color: var(--primary-lime); font-weight: 900;">Offering 10% — 20% Founder Equity</p>
+                <p style="max-width: 600px; margin: 0 auto 30px;">Seeking partners who can contribute to the global digital scale of the 24/7 Combat OS.</p>
+                <div style="height: 2px; width: 100px; background: var(--primary-lime); margin: 0 auto;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE 11: CLOSING -->
+    <section id="page11">
+        <div class="glow" style="bottom: -10%; right: -10%;"></div>
+        <div class="slide-content" style="text-align: center;">
+            <h2 style="font-size: clamp(60px, 10vw, 110px); margin-bottom: 20px;">LET'S <span>SCALE.</span></h2>
+            <p style="font-size: 24px; color: var(--text-white); font-weight: 700;">team.restround@gmail.com</p>
+            <div style="margin-top: 40px; color: var(--text-grey); text-transform: uppercase; letter-spacing: 4px; font-size: 14px;">
+                Engineered for the 24/7 Fighter
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const sections = document.querySelectorAll('section');
+        const navDotsContainer = document.getElementById('navDots');
+
+        sections.forEach((_, i) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => {
+                window.scrollTo({ top: i * window.innerHeight, behavior: 'smooth' });
+            });
+            navDotsContainer.appendChild(dot);
+        });
+
+        const observerOptions = { threshold: 0.5 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    const index = Array.from(sections).indexOf(entry.target);
+                    document.querySelectorAll('.dot').forEach((dot, i) => {
+                        dot.classList.toggle('active', i === index);
+                    });
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => observer.observe(section));
+
+        // Fix for mobile view height
+        window.addEventListener('resize', () => {
+            let vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        });
+    </script>
+</body>
+</html>
