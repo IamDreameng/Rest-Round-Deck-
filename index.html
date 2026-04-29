@@ -125,9 +125,7 @@
             margin-bottom: 20px;
         }
 
-        .highlight-text { color: var(--text-white); font-weight: 700; }
-
-        /* POSITIONING MAP */
+        /* MAP STYLING */
         .map-wrapper {
             width: 100%;
             background: #050505;
@@ -137,78 +135,30 @@
             margin-top: 20px;
             position: relative;
         }
-
-        .map-container {
-            width: 100%;
-            aspect-ratio: 16/9;
-            position: relative;
-            background: radial-gradient(circle at 90% 10%, rgba(215, 223, 34, 0.05) 0%, transparent 40%);
-        }
-
+        .map-container { width: 100%; aspect-ratio: 16/9; position: relative; background: radial-gradient(circle at 90% 10%, rgba(215, 223, 34, 0.05) 0%, transparent 40%); }
         .axis-x { position: absolute; top: 50%; left: 0; width: 100%; height: 1px; background: #333; z-index: 1; }
         .axis-y { position: absolute; left: 50%; top: 0; width: 1px; height: 100%; background: #333; z-index: 1; }
-
-        .map-label {
-            position: absolute;
-            font-family: 'Montserrat';
-            font-weight: 900;
-            font-size: 10px;
-            text-transform: uppercase;
-            color: var(--text-grey);
-            background: var(--bg-black);
-            padding: 4px 8px;
-            white-space: nowrap;
-            z-index: 5;
-            border: 1px solid #222;
-        }
-        
+        .map-label { position: absolute; font-family: 'Montserrat'; font-weight: 900; font-size: 10px; text-transform: uppercase; color: var(--text-grey); background: var(--bg-black); padding: 4px 8px; white-space: nowrap; z-index: 5; border: 1px solid #222; }
         .label-y-top { top: -35px; left: 50%; transform: translateX(-50%); color: var(--primary-lime); }
         .label-y-bottom { bottom: -35px; left: 50%; transform: translateX(-50%); }
         .label-x-left { top: 50%; left: -60px; transform: translateY(-50%) rotate(-90deg); }
         .label-x-right { top: 50%; right: -60px; transform: translateY(-50%) rotate(90deg); color: var(--primary-lime); }
-
-        .brand-marker {
-            position: absolute;
-            transform: translate(-50%, -50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transition: all 0.3s ease;
-            z-index: 2;
-        }
-
+        .brand-marker { position: absolute; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; transition: all 0.3s ease; z-index: 2; }
         .marker-dot { width: 8px; height: 8px; border-radius: 50%; background: #555; margin-bottom: 5px; border: 1px solid #777; }
-        .marker-name {
-            font-size: 10px;
-            font-weight: 700;
-            color: #999;
-            white-space: nowrap;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.9);
-            background: rgba(0,0,0,0.4);
-            padding: 2px 4px;
-            border-radius: 2px;
-        }
-
+        .marker-name { font-size: 10px; font-weight: 700; color: #999; white-space: nowrap; text-shadow: 2px 2px 4px rgba(0,0,0,0.9); background: rgba(0,0,0,0.4); padding: 2px 4px; border-radius: 2px; }
         .marker-rest-round { z-index: 10; transform: translate(-50%, -50%) scale(1.1); }
         .marker-rest-round .marker-dot { width: 12px; height: 12px; background: var(--primary-lime); box-shadow: 0 0 20px var(--primary-lime); border-color: var(--text-white); }
         .marker-rest-round .marker-name { color: var(--text-white); font-weight: 900; font-size: 12px; background: rgba(0,0,0,0.8); border: 1px solid var(--primary-lime); }
 
         .cycle-container { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
-        .cycle-item {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            background: var(--dark-grey);
-            padding: 15px 20px;
-            border-radius: 6px;
-            border-left: 4px solid var(--mid-grey);
-        }
+        .cycle-item { display: flex; align-items: center; gap: 20px; background: var(--dark-grey); padding: 15px 20px; border-radius: 6px; border-left: 4px solid var(--mid-grey); }
         .cycle-time { font-family: 'Montserrat'; font-weight: 900; font-size: 18px; color: var(--primary-lime); min-width: 90px; }
         .cycle-content h4 { font-family: 'Montserrat'; text-transform: uppercase; font-size: 14px; margin-bottom: 2px; }
 
+        /* IMAGE CONTAINERS */
         .image-container {
             width: 100%;
-            height: 400px;
+            height: 450px;
             background: var(--mid-grey);
             border: 1px solid var(--border-grey);
             display: flex;
@@ -218,8 +168,14 @@
             overflow: hidden;
             position: relative;
         }
-        .image-container img { width: 100%; height: 100%; object-fit: contain; background: #000; }
-        .image-container i { font-size: 80px; color: #222; }
+        .image-container img { width: 100%; height: 100%; object-fit: cover; background: #000; }
+        
+        /* SQUARE PICTURE OVERRIDE */
+        .square-pic {
+            aspect-ratio: 1/1 !important;
+            height: auto !important;
+            width: 100%;
+        }
 
         .roadmap { display: flex; justify-content: space-between; position: relative; margin-top: 60px; }
         .roadmap::before { content: ''; position: absolute; top: 25px; left: 0; width: 100%; height: 2px; background: var(--border-grey); }
@@ -282,76 +238,32 @@
         </div>
     </section>
 
-    <!-- PAGE 3: BRAND POSITIONING MAP -->
+    <!-- PAGE 3: POSITIONING MAP -->
     <section id="page3">
         <div class="slide-content">
             <h2 class="slide-title">Market Positioning</h2>
             <p style="margin-bottom: 20px;">The only brand at the intersection of <strong>Top Performance</strong> and <strong>Elite Combat Focus.</strong></p>
-            
             <div class="map-wrapper">
                 <div class="map-container">
-                    <div class="axis-x"></div>
-                    <div class="axis-y"></div>
-
-                    <!-- Axis Labels -->
+                    <div class="axis-x"></div><div class="axis-y"></div>
                     <div class="map-label label-y-top">Total Ecosystem (OS)</div>
                     <div class="map-label label-y-bottom">Single Category Focus</div>
                     <div class="map-label label-x-left">General Lifestyle</div>
                     <div class="map-label label-x-right">Elite Combat Spec</div>
-
-                    <!-- Pharmacy Lifestyle (Top Left) -->
-                    <div class="brand-marker" style="top: 15%; left: 15%;">
-                        <div class="marker-dot"></div>
-                        <div class="marker-name">Aesop / Kiehl's</div>
-                    </div>
-
-                    <!-- Onnit (Mid-Top Left) -->
-                    <div class="brand-marker" style="top: 30%; left: 35%;">
-                        <div class="marker-dot"></div>
-                        <div class="marker-name">Onnit (Supps)</div>
-                    </div>
-
-                    <!-- Wilder/Neutonic (Center Left) -->
-                    <div class="brand-marker" style="top: 48%; left: 22%;">
-                        <div class="marker-dot"></div>
-                        <div class="marker-name">Drink Wilder</div>
-                    </div>
-
-                    <!-- Sanabul (Bottom Left) -->
-                    <div class="brand-marker" style="top: 85%; left: 12%;">
-                        <div class="marker-dot"></div>
-                        <div class="marker-name">Sanabul / Generic</div>
-                    </div>
-
-                    <!-- Defense Soap (Bottom Right) -->
-                    <div class="brand-marker" style="top: 78%; left: 82%;">
-                        <div class="marker-dot"></div>
-                        <div class="marker-name">Defense Soap (Hygiene)</div>
-                    </div>
-
-                    <!-- Gear Brands (Mid Right) -->
-                    <div class="brand-marker" style="top: 60%; left: 88%;">
-                        <div class="marker-dot"></div>
-                        <div class="marker-name">Hayabusa / Venum</div>
-                    </div>
-
-                    <!-- Shoyoroll (Mid-Top Right) -->
-                    <div class="brand-marker" style="top: 35%; left: 85%;">
-                        <div class="marker-dot"></div>
-                        <div class="marker-name">Shoyoroll</div>
-                    </div>
-
-                    <!-- REST ROUND (Top Right) -->
-                    <div class="brand-marker marker-rest-round" style="top: 12%; left: 90%;">
-                        <div class="marker-dot"></div>
-                        <div class="marker-name">REST ROUND™</div>
-                    </div>
+                    <div class="brand-marker" style="top: 15%; left: 15%;"><div class="marker-dot"></div><div class="marker-name">Aesop / Kiehl's</div></div>
+                    <div class="brand-marker" style="top: 30%; left: 35%;"><div class="marker-dot"></div><div class="marker-name">Onnit (Supps)</div></div>
+                    <div class="brand-marker" style="top: 48%; left: 22%;"><div class="marker-dot"></div><div class="marker-name">Drink Wilder</div></div>
+                    <div class="brand-marker" style="top: 85%; left: 12%;"><div class="marker-dot"></div><div class="marker-name">Sanabul / Generic</div></div>
+                    <div class="brand-marker" style="top: 78%; left: 82%;"><div class="marker-dot"></div><div class="marker-name">Defense Soap</div></div>
+                    <div class="brand-marker" style="top: 60%; left: 88%;"><div class="marker-dot"></div><div class="marker-name">Hayabusa / Venum</div></div>
+                    <div class="brand-marker" style="top: 35%; left: 85%;"><div class="marker-dot"></div><div class="marker-name">Shoyoroll</div></div>
+                    <div class="brand-marker marker-rest-round" style="top: 12%; left: 90%;"><div class="marker-dot"></div><div class="marker-name">REST ROUND™</div></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PAGE 4: STRATEGIC SWOT -->
+    <!-- PAGE 4: SWOT -->
     <section id="page4">
         <div class="slide-content">
             <h2 class="slide-title">Elite Strategy (SWOT)</h2>
@@ -406,7 +318,7 @@
         </div>
     </section>
 
-    <!-- PAGE 6: NEURAL PRIMING -->
+    <!-- PAGE 6: FIGHT IQ (SQUARE) -->
     <section id="page6">
         <div class="slide-content">
             <div class="tag">08:00 AM — Neural Priming</div>
@@ -416,23 +328,21 @@
                     <h3>Focus Pouches</h3>
                     <p>Unlock true potential through cognitive speed. Zero nicotine. Zero crash. 200mg Nootropic stack for reaction dominance.</p>
                 </div>
-                <div class="image-container">
-                    <!-- ADD PICTURE HERE: REPLACE image_2f9317.jpg WITH YOUR URL -->
+                <div class="image-container square-pic">
                     <img src="https://i.postimg.cc/L5CsZ9F6/fe93b36f-70be-4b85-8b1e-f2c181efe8f7.jpg" alt="Rest Round FIGHT IQ">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PAGE 7: INTERNAL HYGIENE (PIC ADDED) -->
+    <!-- PAGE 7: INTERNAL HYGIENE (SQUARE) -->
     <section id="page7">
         <div class="slide-content">
             <div class="tag">11:00 AM — Internal Hygiene</div>
             <h2 class="product-focus-title">Skin <span>Armor</span></h2>
             <div class="grid-2">
-                <div class="image-container">
-                    <!-- ADD PICTURE HERE: REPLACE src LINK BELOW -->
-                    <img src="https://restround.co/cdn/shop/files/80ml_bottle_copy-2_copy1_55e022a2-8ef9-4f39-b9a1-c619c7d65302.jpg" alt="Probiotic Electrolytes Placeholder" onerror="this.parentElement.innerHTML='<i class=\'fa-solid fa-droplet\'></i><p style=\'position:absolute; bottom:20px; color:#444\'>Add Picture in Code</p>'">
+                <div class="image-container square-pic">
+                    <img src="https://i.postimg.cc/L5CsZ9F6/fe93b36f-70be-4b85-8b1e-f2c181efe8f7.jpg" alt="Probiotic Electrolytes">
                 </div>
                 <div>
                     <h3>Probiotic Electrolytes</h3>
@@ -442,7 +352,7 @@
         </div>
     </section>
 
-    <!-- PAGE 8: IMMEDIATE DEFENSE -->
+    <!-- PAGE 8: IMMEDIATE DEFENSE (SQUARE) -->
     <section id="page8">
         <div class="slide-content">
             <div class="tag">01:00 PM — Immediate Defense</div>
@@ -452,70 +362,66 @@
                     <h3>HOCL Flagship Spray</h3>
                     <p>The medical standard. Instant neutralization of mat-born pathogens on skin and gear.</p>
                 </div>
-                <div class="image-container">
-                    <!-- ADD PICTURE HERE: REPLACE src LINK BELOW -->
-                    <img src="https://restround.co/cdn/shop/files/REST_ROUND_Combat_Gear_Skin_Spray_v2.png?v=1708420658&width=800" alt="Combat Spray">
+                <div class="image-container square-pic">
+                    <img src="https://restround.co/cdn/shop/files/80ml_bottle_copy-2_copy1_55e022a2-8ef9-4f39-b9a1-c619c7d65302.jpg?v=1772604357&width=3840" alt="Combat Spray">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PAGE 9: COMBAT SKIN KIT -->
+    <!-- PAGE 9: COMBAT SKIN KIT (SQUARES) -->
     <section id="page9">
         <div class="slide-content">
             <div class="tag">07:00 PM — The Bio-Reset</div>
             <h2 class="product-focus-title">Combat <span>Skin Kit</span></h2>
             <div class="grid-3">
                 <div class="card">
-                    <div class="image-container" style="height: 120px; margin-bottom: 15px;">
-                        <!-- ADD PICTURE HERE: REPLACE src -->
-                        <img src="" alt="Shower Gel" onerror="this.parentElement.innerHTML='<i class=\'fa-solid fa-soap\'></i>'">
+                    <div class="image-container square-pic" style="margin-bottom: 15px;">
+                        <i class="fa-solid fa-soap" style="font-size: 40px; color: #222;"></i>
                     </div>
                     <h3>Shower Gel</h3>
-                    <p>Antimicrobial wash designed to remove mat bacteria without stripping the skin's barrier.</p>
+                    <p>Antimicrobial wash designed to remove mat bacteria without stripping the skin.</p>
                 </div>
                 <div class="card" style="border-color: var(--primary-lime);">
-                    <div class="image-container" style="height: 120px; margin-bottom: 15px;">
-                        <!-- ADD PICTURE HERE: REPLACE src -->
-                        <img src="" alt="Probiotic Soap" onerror="this.parentElement.innerHTML='<i class=\'fa-solid fa-cube\'></i>'">
+                    <div class="image-container square-pic" style="margin-bottom: 15px;">
+                        <i class="fa-solid fa-cube" style="font-size: 40px; color: #222;"></i>
                     </div>
                     <h3>Probiotic Soap</h3>
-                    <p>Bar reset using active probiotic strains to re-seed the skin's defense post-training.</p>
+                    <p>Active probiotic reset to re-seed the skin's defense barrier.</p>
                 </div>
                 <div class="card">
-                    <div class="image-container" style="height: 120px; margin-bottom: 15px;">
-                        <!-- ADD PICTURE HERE: REPLACE src -->
-                        <img src="" alt="Probiotic Cream" onerror="this.parentElement.innerHTML='<i class=\'fa-solid fa-hand-holding-droplet\'></i>'">
+                    <div class="image-container square-pic" style="margin-bottom: 15px;">
+                        <i class="fa-solid fa-hand-holding-droplet" style="font-size: 40px; color: #222;"></i>
                     </div>
                     <h3>Probiotic Cream</h3>
-                    <p>High-absorption cream that rebuilds the skin microbiome and seals in protection.</p>
+                    <p>High-absorption rebuild cream that seals in protection overnight.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PAGE 10: PRECISION RESET -->
+    <!-- PAGE 10: PRECISION RESET (SQUARES) -->
     <section id="page10">
         <div class="slide-content">
             <div class="tag">09:00 PM — Hardware Reset</div>
             <h2 class="product-focus-title">Precision <span>Reset</span></h2>
             <div class="grid-3">
                 <div class="card">
-                    <div class="image-container" style="height: 120px; margin-bottom: 15px;">
+                    <div class="image-container square-pic" style="margin-bottom: 15px;">
                          <img src="https://restround.co/cdn/shop/files/Callus_Remover.png?v=1708420658&width=800" alt="Callus Remover">
                     </div>
                     <h3>Callus Care</h3>
-                    <p>Maintaining foot skin integrity to prevent entry points for staph.</p>
+                    <p>Maintaining foot skin integrity to prevent infection entry points.</p>
                 </div>
                 <div class="card">
-                    <div class="image-container" style="height: 120px; margin-bottom: 15px;">
-                        <i class="fa-solid fa-scissors"></i>
+                    <div class="image-container square-pic" style="margin-bottom: 15px;">
+                        <i class="fa-solid fa-scissors" style="font-size: 40px; color: #222;"></i>
                     </div>
                     <h3>Precision Clipper</h3>
                     <p>Safety-first precision trimmers for zero-snag nails.</p>
                 </div>
                 <div class="card">
-                    <div class="image-container" style="height: 120px; margin-bottom: 15px;">
+                    <div class="image-container square-pic" style="margin-bottom: 15px;">
                         <img src="https://restround.co/cdn/shop/files/Mouth_Guard_Cleaner_Tablets.png?v=1708420658&width=800" alt="Mouth Guard Cleaner">
                     </div>
                     <h3>Oral Reset</h3>
