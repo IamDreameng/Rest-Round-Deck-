@@ -94,14 +94,16 @@
         p { font-size: 18px; line-height: 1.5; color: var(--text-grey); }
 
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-        @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; text-align: center; } .slide-title { border-left-width: 6px; } }
+        @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; text-align: center; } }
 
         .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 100%; }
         @media (max-width: 768px) { .grid-3 { grid-template-columns: 1fr; } }
+
+        .grid-4 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; width: 100%; }
         
         .card {
             background: var(--dark-grey);
-            padding: 40px;
+            padding: 30px;
             border-radius: 8px;
             border: 1px solid var(--border-grey);
             transition: all 0.3s ease;
@@ -125,13 +127,71 @@
 
         .highlight-text { color: var(--text-white); font-weight: 700; }
 
-        .comparison-container { width: 100%; overflow-x: auto; margin-top: 30px; -webkit-overflow-scrolling: touch; }
-        table { width: 100%; min-width: 600px; border-collapse: collapse; text-align: left; }
-        th, td { padding: 15px; border-bottom: 1px solid var(--border-grey); }
-        th { font-family: 'Montserrat'; font-size: 12px; text-transform: uppercase; color: var(--text-grey); letter-spacing: 1px; }
-        .focus-col { background: rgba(215, 223, 34, 0.05); color: var(--text-white); font-weight: 700; }
-        .check { color: var(--primary-lime); font-size: 18px; }
-        .cross { color: #333; font-size: 18px; }
+        /* POSITIONING MAP */
+        .map-wrapper {
+            width: 100%;
+            background: #050505;
+            padding: 50px;
+            border: 1px solid var(--border-grey);
+            border-radius: 12px;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .map-container {
+            width: 100%;
+            aspect-ratio: 16/9;
+            position: relative;
+            background: radial-gradient(circle at 90% 10%, rgba(215, 223, 34, 0.05) 0%, transparent 40%);
+        }
+
+        .axis-x { position: absolute; top: 50%; left: 0; width: 100%; height: 1px; background: #333; z-index: 1; }
+        .axis-y { position: absolute; left: 50%; top: 0; width: 1px; height: 100%; background: #333; z-index: 1; }
+
+        .map-label {
+            position: absolute;
+            font-family: 'Montserrat';
+            font-weight: 900;
+            font-size: 10px;
+            text-transform: uppercase;
+            color: var(--text-grey);
+            background: var(--bg-black);
+            padding: 4px 8px;
+            white-space: nowrap;
+            z-index: 5;
+            border: 1px solid #222;
+        }
+        
+        .label-y-top { top: -35px; left: 50%; transform: translateX(-50%); color: var(--primary-lime); }
+        .label-y-bottom { bottom: -35px; left: 50%; transform: translateX(-50%); }
+        .label-x-left { top: 50%; left: -60px; transform: translateY(-50%) rotate(-90deg); }
+        .label-x-right { top: 50%; right: -60px; transform: translateY(-50%) rotate(90deg); color: var(--primary-lime); }
+
+        .brand-marker {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.3s ease;
+            z-index: 2;
+        }
+
+        .marker-dot { width: 8px; height: 8px; border-radius: 50%; background: #555; margin-bottom: 5px; border: 1px solid #777; }
+        .marker-name {
+            font-size: 10px;
+            font-weight: 700;
+            color: #999;
+            white-space: nowrap;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.9);
+            background: rgba(0,0,0,0.4);
+            padding: 2px 4px;
+            border-radius: 2px;
+        }
+
+        .marker-rest-round { z-index: 10; transform: translate(-50%, -50%) scale(1.1); }
+        .marker-rest-round .marker-dot { width: 12px; height: 12px; background: var(--primary-lime); box-shadow: 0 0 20px var(--primary-lime); border-color: var(--text-white); }
+        .marker-rest-round .marker-name { color: var(--text-white); font-weight: 900; font-size: 12px; background: rgba(0,0,0,0.8); border: 1px solid var(--primary-lime); }
 
         .cycle-container { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
         .cycle-item {
@@ -145,11 +205,10 @@
         }
         .cycle-time { font-family: 'Montserrat'; font-weight: 900; font-size: 18px; color: var(--primary-lime); min-width: 90px; }
         .cycle-content h4 { font-family: 'Montserrat'; text-transform: uppercase; font-size: 14px; margin-bottom: 2px; }
-        .cycle-content p { font-size: 14px; }
 
         .image-container {
             width: 100%;
-            height: 450px;
+            height: 400px;
             background: var(--mid-grey);
             border: 1px solid var(--border-grey);
             display: flex;
@@ -159,18 +218,13 @@
             overflow: hidden;
             position: relative;
         }
-        .image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            background: #000;
-        }
+        .image-container img { width: 100%; height: 100%; object-fit: contain; background: #000; }
+        .image-container i { font-size: 80px; color: #222; }
 
         .roadmap { display: flex; justify-content: space-between; position: relative; margin-top: 60px; }
-        .roadmap::before { content: ''; position: absolute; top: 30px; left: 0; width: 100%; height: 2px; background: var(--border-grey); }
+        .roadmap::before { content: ''; position: absolute; top: 25px; left: 0; width: 100%; height: 2px; background: var(--border-grey); }
         @media (max-width: 600px) { 
-            .roadmap { flex-direction: column; gap: 40px; } 
-            .roadmap::before { display: none; }
+            .roadmap { flex-direction: column; gap: 40px; } .roadmap::before { display: none; }
             .step { width: 100% !important; padding-top: 0 !important; border-left: 2px solid var(--border-grey); padding-left: 20px; }
             .step::after { left: -10px !important; top: 0 !important; }
         }
@@ -181,10 +235,17 @@
         .dot { width: 8px; height: 8px; border: 1px solid #444; border-radius: 50%; cursor: pointer; }
         .dot.active { background: var(--primary-lime); border-color: var(--primary-lime); transform: scale(1.4); }
 
-        .cta-box { background: linear-gradient(135deg, #0a0a0a 0%, #000 100%); padding: 60px; border: 1px solid var(--border-grey); text-align: center; width: 100%; border-radius: 12px; }
-        
         .product-focus-title { font-size: clamp(40px, 8vw, 80px); margin-bottom: 10px; color: var(--text-white); }
         .product-focus-title span { color: var(--primary-lime); }
+
+        .comparison-container { width: 100%; overflow-x: auto; margin-top: 30px; -webkit-overflow-scrolling: touch; }
+        table { width: 100%; min-width: 600px; border-collapse: collapse; text-align: left; }
+        th, td { padding: 15px; border-bottom: 1px solid var(--border-grey); }
+        th { font-family: 'Montserrat'; font-size: 12px; text-transform: uppercase; color: var(--text-grey); letter-spacing: 1px; }
+        .focus-col { background: rgba(215, 223, 34, 0.05); color: var(--text-white); font-weight: 700; }
+        .check { color: var(--primary-lime); font-size: 18px; }
+        .cross { color: #333; font-size: 18px; }
+
     </style>
 </head>
 <body>
@@ -196,11 +257,11 @@
         <div class="glow" style="top: -10%; left: -10%;"></div>
         <div class="slide-content" style="text-align: center;">
             <h1>REST<br><span>ROUND™</span></h1>
-            <p style="margin: 30px auto; font-size: clamp(18px, 4vw, 24px); max-width: 950px; color: var(--text-white); letter-spacing: -0.5px;">
+            <p style="margin: 30px auto; font-size: clamp(18px, 4vw, 24px); max-width: 950px; color: var(--text-white); font-weight: 500;">
                 High-Performance Hygiene & Recovery. <br>Engineered for Combat Athletes. <br>
                 <span style="color: var(--primary-lime); font-weight: 900;">Built for Global Dominance.</span>
             </p>
-            <div style="height: 5px; width: 120px; background: var(--primary-lime); margin: 0 auto;"></div>
+            <div style="height: 4px; width: 120px; background: var(--primary-lime); margin: 0 auto;"></div>
         </div>
     </section>
 
@@ -221,266 +282,300 @@
         </div>
     </section>
 
-    <!-- PAGE 3: COMPARISON -->
+    <!-- PAGE 3: BRAND POSITIONING MAP -->
     <section id="page3">
         <div class="slide-content">
-            <h2 class="slide-title">Market Dominance</h2>
-            <div class="comparison-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Protocol Standard</th>
-                            <th class="focus-col">REST ROUND™</th>
-                            <th>Legacy (Defense/CSH)</th>
-                            <th>Lifestyle (Onnit/Neutonic/Wilder)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Combat Bio-Defense (HOCL)</td>
-                            <td class="focus-col"><i class="fa-solid fa-check check"></i></td>
-                            <td><i class="fa-solid fa-circle-dot" style="color: #444;"></i> (Basic Soap)</td>
-                            <td><i class="fa-solid fa-xmark cross"></i></td>
-                        </tr>
-                        <tr>
-                            <td>Performance Ritual (Nootropics)</td>
-                            <td class="focus-col"><i class="fa-solid fa-check check"></i></td>
-                            <td><i class="fa-solid fa-xmark cross"></i></td>
-                            <td><i class="fa-solid fa-check check"></i></td>
-                        </tr>
-                        <tr>
-                            <td>24/7 Integrated Ecosystem</td>
-                            <td class="focus-col"><i class="fa-solid fa-check check"></i></td>
-                            <td><i class="fa-solid fa-xmark cross"></i></td>
-                            <td><i class="fa-solid fa-check check"></i></td>
-                        </tr>
-                        <tr>
-                            <td>Artist-Led "High-Performance" Aesthetic</td>
-                            <td class="focus-col"><i class="fa-solid fa-check check"></i></td>
-                            <td><i class="fa-solid fa-xmark cross"></i></td>
-                            <td><i class="fa-solid fa-check check"></i></td>
-                        </tr>
-                    </tbody>
-                </table>
+            <h2 class="slide-title">Market Positioning</h2>
+            <p style="margin-bottom: 20px;">The only brand at the intersection of <strong>Top Performance</strong> and <strong>Elite Combat Focus.</strong></p>
+            
+            <div class="map-wrapper">
+                <div class="map-container">
+                    <div class="axis-x"></div>
+                    <div class="axis-y"></div>
+
+                    <!-- Axis Labels -->
+                    <div class="map-label label-y-top">Total Ecosystem (OS)</div>
+                    <div class="map-label label-y-bottom">Single Category Focus</div>
+                    <div class="map-label label-x-left">General Lifestyle</div>
+                    <div class="map-label label-x-right">Elite Combat Spec</div>
+
+                    <!-- Pharmacy Lifestyle (Top Left) -->
+                    <div class="brand-marker" style="top: 15%; left: 15%;">
+                        <div class="marker-dot"></div>
+                        <div class="marker-name">Aesop / Kiehl's</div>
+                    </div>
+
+                    <!-- Onnit (Mid-Top Left) -->
+                    <div class="brand-marker" style="top: 30%; left: 35%;">
+                        <div class="marker-dot"></div>
+                        <div class="marker-name">Onnit (Supps)</div>
+                    </div>
+
+                    <!-- Wilder/Neutonic (Center Left) -->
+                    <div class="brand-marker" style="top: 48%; left: 22%;">
+                        <div class="marker-dot"></div>
+                        <div class="marker-name">Drink Wilder</div>
+                    </div>
+
+                    <!-- Sanabul (Bottom Left) -->
+                    <div class="brand-marker" style="top: 85%; left: 12%;">
+                        <div class="marker-dot"></div>
+                        <div class="marker-name">Sanabul / Generic</div>
+                    </div>
+
+                    <!-- Defense Soap (Bottom Right) -->
+                    <div class="brand-marker" style="top: 78%; left: 82%;">
+                        <div class="marker-dot"></div>
+                        <div class="marker-name">Defense Soap (Hygiene)</div>
+                    </div>
+
+                    <!-- Gear Brands (Mid Right) -->
+                    <div class="brand-marker" style="top: 60%; left: 88%;">
+                        <div class="marker-dot"></div>
+                        <div class="marker-name">Hayabusa / Venum</div>
+                    </div>
+
+                    <!-- Shoyoroll (Mid-Top Right) -->
+                    <div class="brand-marker" style="top: 35%; left: 85%;">
+                        <div class="marker-dot"></div>
+                        <div class="marker-name">Shoyoroll</div>
+                    </div>
+
+                    <!-- REST ROUND (Top Right) -->
+                    <div class="brand-marker marker-rest-round" style="top: 12%; left: 90%;">
+                        <div class="marker-dot"></div>
+                        <div class="marker-name">REST ROUND™</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- PAGE 4: THE TIMELINE OF THE DAY -->
+    <!-- PAGE 4: STRATEGIC SWOT -->
     <section id="page4">
         <div class="slide-content">
-            <h2 class="slide-title">Fighter 24/7</h2>
-            <p style="font-size: 24px; color: var(--text-white); margin-bottom: 30px;">The Operating System for Elite Potential.</p>
-            <div class="cycle-container">
-                <div class="cycle-item">
-                    <div class="cycle-time">08:00 AM</div>
-                    <div class="cycle-content">
-                        <h4>Neural Priming</h4>
-                        <p><strong>FOCUS POUCH:</strong> Nootropic tunnel vision. High-alert cognition for the morning grind.</p>
-                    </div>
-                </div>
-                <div class="cycle-item">
-                    <div class="cycle-time">11:00 AM</div>
-                    <div class="cycle-content">
-                        <h4>Internal Hygiene</h4>
-                        <p><strong>PROBIOTIC ELECTROLYTES:</strong> Internal hygiene and skin protection from the inside out. Peak stamina fuel.</p>
-                    </div>
-                </div>
-                <div class="cycle-item">
-                    <div class="cycle-time">01:00 PM</div>
-                    <div class="cycle-content">
-                        <h4>Immediate Defense</h4>
-                        <p><strong>HOCL SPRAY & WIPES:</strong> Decontamination. Killing pathogens the second training ends.</p>
-                    </div>
-                </div>
-                <div class="cycle-item">
-                    <div class="cycle-time">09:00 PM</div>
-                    <div class="cycle-content">
-                        <h4>Precision Reset</h4>
-                        <p><strong>RECOVERY TOOLS & LAUNDRY:</strong> Precision body maintenance and gear reset for the next round.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PAGE 5: NEURAL PRIMING -->
-    <section id="page5">
-        <div class="slide-content">
-            <div class="tag">08:00 AM — Morning Grind</div>
-            <h2 class="product-focus-title">Neural <span>Priming</span></h2>
-            <div class="grid-2">
-                <div>
-                    <h3>Focus Pouches: FIGHT IQ</h3>
-                    <p>A cognitive protocol designed for the "Ultimate Form." Engineered to eliminate reaction-time lag and mental fog during high-stakes sparring.</p>
-                    <ul style="list-style: none; margin-top: 30px;">
-                        <li style="margin-bottom: 20px;"><i class="fa-solid fa-bolt" style="color: var(--primary-lime); margin-right: 15px;"></i> <span class="highlight-text">Zero-Crash:</span> Sustain focus throughout two-a-day sessions.</li>
-                        <li style="margin-bottom: 20px;"><i class="fa-solid fa-brain" style="color: var(--primary-lime); margin-right: 15px;"></i> <span class="highlight-text">Mental Edge:</span> 200mg Nootropics for neural processing speed.</li>
+            <h2 class="slide-title">Elite Strategy (SWOT)</h2>
+            <div class="grid-4">
+                <div class="card" style="border-left: 5px solid var(--primary-lime);">
+                    <h3>Form (Strengths)</h3>
+                    <p style="font-size: 12px; color: var(--primary-lime); margin-bottom: 8px;">The Blueprint of Top Fighters</p>
+                    <ul style="list-style: none; font-size: 14px; color: var(--text-grey);">
+                        <li>+ 3-Pillar Ecosystem: Hygiene, Recov, Supps</li>
+                        <li>+ Artist-Led Elite Aesthetic Authority</li>
+                        <li>+ China Manufacturing Speed & Cost Edge</li>
                     </ul>
                 </div>
-                <div class="image-container">
-                    <img src="blob:https://gemini.google.com/fe93b36f-70be-4b85-8b1e-f2c181efe8f7" alt="Rest Round FIGHT IQ Focus Pouches">
+                <div class="card" style="border-left: 5px solid #444;">
+                    <h3>Friction (Weaknesses)</h3>
+                    <ul style="list-style: none; font-size: 14px; color: var(--text-grey);">
+                        <li>- Early stage market penetration</li>
+                        <li>- Lean operational core for global scaling</li>
+                        <li>- Education gap vs legacy "basic hygiene"</li>
+                    </ul>
+                </div>
+                <div class="card" style="border-left: 5px solid var(--primary-lime);">
+                    <h3>Expansion (Opportunities)</h3>
+                    <ul style="list-style: none; font-size: 14px; color: var(--text-grey);">
+                        <li>+ GEO AI Dominance for "True potential"</li>
+                        <li>+ Global FBA Scale (US/EU/Asia)</li>
+                        <li>+ 24/7 Subscription Protocol Stacks</li>
+                    </ul>
+                </div>
+                <div class="card" style="border-left: 5px solid #444;">
+                    <h3>Resistance (Threats)</h3>
+                    <ul style="list-style: none; font-size: 14px; color: var(--text-grey);">
+                        <li>- Logistics volatility (China -> West)</li>
+                        <li>- Price wars from generic pharma soaps</li>
+                        <li>- Low-quality copycat nootropics</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PAGE 6: INTERNAL HYGIENE -->
+    <!-- PAGE 5: 24/7 TIMELINE -->
+    <section id="page5">
+        <div class="slide-content">
+            <h2 class="slide-title">Fighter 24/7</h2>
+            <div class="cycle-container">
+                <div class="cycle-item"><div class="cycle-time">08:00 AM</div><div class="cycle-content"><h4>Neural Priming</h4><p>Cognitive sharpened. Vision for reaction.</p></div></div>
+                <div class="cycle-item"><div class="cycle-time">11:00 AM</div><div class="cycle-content"><h4>Internal Hygiene</h4><p>Skin armor protection from the inside.</p></div></div>
+                <div class="cycle-item"><div class="cycle-time">01:00 PM</div><div class="cycle-content"><h4>Immediate Defense</h4><p>Mat decontamination on contact.</p></div></div>
+                <div class="cycle-item"><div class="cycle-time">09:00 PM</div><div class="cycle-content"><h4>Precision Reset</h4><p>Hardware maintenance and gear prep.</p></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE 6: NEURAL PRIMING -->
     <section id="page6">
         <div class="slide-content">
-            <div class="tag">11:00 AM — Intra-Train</div>
-            <h2 class="product-focus-title">Internal <span>Hygiene</span></h2>
+            <div class="tag">08:00 AM — Neural Priming</div>
+            <h2 class="product-focus-title">Fight <span>IQ</span></h2>
+            <div class="grid-2">
+                <div>
+                    <h3>Focus Pouches</h3>
+                    <p>Unlock true potential through cognitive speed. Zero nicotine. Zero crash. 200mg Nootropic stack for reaction dominance.</p>
+                </div>
+                <div class="image-container">
+                    <!-- ADD PICTURE HERE: REPLACE image_2f9317.jpg WITH YOUR URL -->
+                    <img src="image_2f9317.jpg" alt="Rest Round FIGHT IQ">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE 7: INTERNAL HYGIENE (PIC ADDED) -->
+    <section id="page7">
+        <div class="slide-content">
+            <div class="tag">11:00 AM — Internal Hygiene</div>
+            <h2 class="product-focus-title">Skin <span>Armor</span></h2>
             <div class="grid-2">
                 <div class="image-container">
-                    <i class="fa-solid fa-droplet" style="font-size: 100px; color: #333;"></i>
+                    <!-- ADD PICTURE HERE: REPLACE src LINK BELOW -->
+                    <img src="" alt="Probiotic Electrolytes Placeholder" onerror="this.parentElement.innerHTML='<i class=\'fa-solid fa-droplet\'></i><p style=\'position:absolute; bottom:20px; color:#444\'>Add Picture in Code</p>'">
                 </div>
                 <div>
                     <h3>Probiotic Electrolytes</h3>
-                    <p>True combat care starts inside. Our probiotic electrolytes keep hygiene high by protecting the skin's biome from within.</p>
-                    <ul style="list-style: none; margin-top: 30px;">
-                        <li style="margin-bottom: 20px;"><i class="fa-solid fa-microbe" style="color: var(--primary-lime); margin-right: 15px;"></i> <span class="highlight-text">Skin Hygiene:</span> Active bacterial protection during heavy sweating.</li>
-                        <li style="margin-bottom: 20px;"><i class="fa-solid fa-battery-full" style="color: var(--primary-lime); margin-right: 15px;"></i> <span class="highlight-text">Ultimate Potential:</span> Preventing the "crash" to maintain peak form.</li>
-                    </ul>
+                    <p>Fueling the internal microbiome to protect the external skin during extreme sweat cycles. Hygiene that starts inside.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PAGE 7: IMMEDIATE DEFENSE -->
-    <section id="page7">
+    <!-- PAGE 8: IMMEDIATE DEFENSE -->
+    <section id="page8">
         <div class="slide-content">
-            <div class="tag">01:00 PM — Post-Mat</div>
-            <h2 class="product-focus-title">Immediate <span>Defense</span></h2>
+            <div class="tag">01:00 PM — Immediate Defense</div>
+            <h2 class="product-focus-title">Tactical <span>Bio-Shield</span></h2>
             <div class="grid-2">
                 <div>
-                    <h3>HOCL Spray & Wipes</h3>
-                    <p>The tactical intervention. Our HOCL-based wipes and flagship spray provide instant protection when the athlete is most vulnerable.</p>
-                    <ul style="list-style: none; margin-top: 30px;">
-                        <li style="margin-bottom: 20px;"><i class="fa-solid fa-spray-can-sparkles" style="color: var(--primary-lime); margin-right: 15px;"></i> <span class="highlight-text">Spray:</span> The medical-grade gear and skin standard.</li>
-                        <li style="margin-bottom: 20px;"><i class="fa-solid fa-box-tissue" style="color: var(--primary-lime); margin-right: 15px;"></i> <span class="highlight-text">Wipes:</span> Fast, mat-side decontamination before the shower.</li>
-                    </ul>
+                    <h3>HOCL Flagship Spray</h3>
+                    <p>The medical standard. Instant neutralization of mat-born pathogens on skin and gear.</p>
                 </div>
                 <div class="image-container">
+                    <!-- ADD PICTURE HERE: REPLACE src LINK BELOW -->
                     <img src="https://restround.co/cdn/shop/files/REST_ROUND_Combat_Gear_Skin_Spray_v2.png?v=1708420658&width=800" alt="Combat Spray">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PAGE 8: PRECISION RESET -->
-    <section id="page8">
+    <!-- PAGE 9: COMBAT SKIN KIT -->
+    <section id="page9">
         <div class="slide-content">
-            <div class="tag">09:00 PM — Hardware Maintenance</div>
+            <div class="tag">07:00 PM — The Bio-Reset</div>
+            <h2 class="product-focus-title">Combat <span>Skin Kit</span></h2>
+            <div class="grid-3">
+                <div class="card">
+                    <div class="image-container" style="height: 120px; margin-bottom: 15px;">
+                        <!-- ADD PICTURE HERE: REPLACE src -->
+                        <img src="" alt="Shower Gel" onerror="this.parentElement.innerHTML='<i class=\'fa-solid fa-soap\'></i>'">
+                    </div>
+                    <h3>Shower Gel</h3>
+                    <p>Antimicrobial wash designed to remove mat bacteria without stripping the skin's barrier.</p>
+                </div>
+                <div class="card" style="border-color: var(--primary-lime);">
+                    <div class="image-container" style="height: 120px; margin-bottom: 15px;">
+                        <!-- ADD PICTURE HERE: REPLACE src -->
+                        <img src="" alt="Probiotic Soap" onerror="this.parentElement.innerHTML='<i class=\'fa-solid fa-cube\'></i>'">
+                    </div>
+                    <h3>Probiotic Soap</h3>
+                    <p>Bar reset using active probiotic strains to re-seed the skin's defense post-training.</p>
+                </div>
+                <div class="card">
+                    <div class="image-container" style="height: 120px; margin-bottom: 15px;">
+                        <!-- ADD PICTURE HERE: REPLACE src -->
+                        <img src="" alt="Probiotic Cream" onerror="this.parentElement.innerHTML='<i class=\'fa-solid fa-hand-holding-droplet\'></i>'">
+                    </div>
+                    <h3>Probiotic Cream</h3>
+                    <p>High-absorption cream that rebuilds the skin microbiome and seals in protection.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE 10: PRECISION RESET -->
+    <section id="page10">
+        <div class="slide-content">
+            <div class="tag">09:00 PM — Hardware Reset</div>
             <h2 class="product-focus-title">Precision <span>Reset</span></h2>
             <div class="grid-3">
                 <div class="card">
-                    <div class="image-container" style="height: 200px; margin-bottom: 20px;">
+                    <div class="image-container" style="height: 120px; margin-bottom: 15px;">
                          <img src="https://restround.co/cdn/shop/files/Callus_Remover.png?v=1708420658&width=800" alt="Callus Remover">
                     </div>
-                    <h3>Callus Remover</h3>
-                    <p>Maintaining foot skin integrity to prevent infection entry points.</p>
+                    <h3>Callus Care</h3>
+                    <p>Maintaining foot skin integrity to prevent entry points for staph.</p>
                 </div>
                 <div class="card">
-                    <div class="image-container" style="height: 200px; margin-bottom: 20px;">
-                        <i class="fa-solid fa-scissors" style="font-size: 60px; color: #222;"></i>
+                    <div class="image-container" style="height: 120px; margin-bottom: 15px;">
+                        <i class="fa-solid fa-scissors"></i>
                     </div>
-                    <h3>Electric Clipper</h3>
+                    <h3>Precision Clipper</h3>
                     <p>Safety-first precision trimmers for zero-snag nails.</p>
                 </div>
                 <div class="card">
-                    <div class="image-container" style="height: 200px; margin-bottom: 20px;">
+                    <div class="image-container" style="height: 120px; margin-bottom: 15px;">
                         <img src="https://restround.co/cdn/shop/files/Mouth_Guard_Cleaner_Tablets.png?v=1708420658&width=800" alt="Mouth Guard Cleaner">
                     </div>
                     <h3>Oral Reset</h3>
-                    <p>Deep-cleaning tablets for gear decontamination. Non-stop recovery.</p>
+                    <p>Deep-cleaning tablets for gear decontamination.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PAGE 9: ROADMAP -->
-    <section id="page9">
+    <!-- PAGE 11: ROADMAP -->
+    <section id="page11">
         <div class="slide-content">
-            <h2 class="slide-title">The "July" Roadmap</h2>
+            <h2 class="slide-title">The Roadmap to $3M</h2>
             <div class="roadmap">
-                <div class="step">
-                    <h3>APR</h3>
-                    <p><span class="highlight-text">HOCL Spray</span><br>Live.</p>
-                </div>
-                <div class="step">
-                    <h3>MAY</h3>
-                    <p><span class="highlight-text">Defense Wipes</span><br>Launch.</p>
-                </div>
-                <div class="step">
-                    <h3>JUN</h3>
-                    <p><span class="highlight-text">Laundry Sheets</span><br>Launch.</p>
-                </div>
-                <div class="step">
-                    <h3>JUL</h3>
-                    <p><span class="highlight-text">Ultimate Fuel</span><br>Sprint.</p>
-                </div>
+                <div class="step"><h3>APR</h3><p>HOCL Spray Live.</p></div>
+                <div class="step"><h3>MAY</h3><p>Defense Wipes Launch.</p></div>
+                <div class="step"><h3>JUN</h3><p>Laundry Sheets Launch.</p></div>
+                <div class="step"><h3>JUL</h3><p>Fuel & Focus Sprint.</p></div>
             </div>
         </div>
     </section>
 
-    <!-- PAGE 10: THE ASK -->
-    <section id="page10">
+    <!-- PAGE 12: THE ASK -->
+    <section id="page12">
         <div class="slide-content">
-            <div class="cta-box">
+            <div class="card" style="border: 2px solid var(--primary-lime); text-align: center; padding: 60px;">
                 <h2 style="font-size: clamp(30px, 5vw, 60px); color: var(--text-white);">Strategic Opportunity</h2>
                 <p style="margin: 20px 0; font-size: 22px; color: var(--primary-lime); font-weight: 900;">Offering 10% — 20% Founder Equity</p>
-                <p style="max-width: 600px; margin: 0 auto 30px;">Seeking partners who can contribute to the global digital scale of the 24/7 Combat OS.</p>
-                <div style="height: 2px; width: 100px; background: var(--primary-lime); margin: 0 auto;"></div>
+                <p style="max-width: 600px; margin: 0 auto;">Seeking partners to accelerate the 24/7 Combat OS and own the top performance category.</p>
             </div>
         </div>
     </section>
 
-    <!-- PAGE 11: CLOSING -->
-    <section id="page11">
+    <!-- PAGE 13: CLOSING -->
+    <section id="page13">
         <div class="glow" style="bottom: -10%; right: -10%;"></div>
         <div class="slide-content" style="text-align: center;">
             <h2 style="font-size: clamp(60px, 10vw, 110px); margin-bottom: 20px;">LET'S <span>SCALE.</span></h2>
             <p style="font-size: 24px; color: var(--text-white); font-weight: 700;">team.restround@gmail.com</p>
-            <div style="margin-top: 40px; color: var(--text-grey); text-transform: uppercase; letter-spacing: 4px; font-size: 14px;">
-                Engineered for the 24/7 Fighter
-            </div>
+            <div style="margin-top: 40px; color: var(--text-grey); text-transform: uppercase; letter-spacing: 4px; font-size: 14px;">Engineered for the 24/7 Fighter</div>
         </div>
     </section>
 
     <script>
         const sections = document.querySelectorAll('section');
         const navDotsContainer = document.getElementById('navDots');
-
         sections.forEach((_, i) => {
-            const dot = document.createElement('div');
-            dot.classList.add('dot');
-            if (i === 0) dot.classList.add('active');
-            dot.addEventListener('click', () => {
-                window.scrollTo({ top: i * window.innerHeight, behavior: 'smooth' });
-            });
+            const dot = document.createElement('div'); dot.classList.add('dot'); if (i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => { window.scrollTo({ top: i * window.innerHeight, behavior: 'smooth' }); });
             navDotsContainer.appendChild(dot);
         });
-
         const observerOptions = { threshold: 0.5 };
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    const index = Array.from(sections).indexOf(entry.target);
-                    document.querySelectorAll('.dot').forEach((dot, i) => {
-                        dot.classList.toggle('active', i === index);
-                    });
-                }
-            });
+            entries.forEach(entry => { if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                const index = Array.from(sections).indexOf(entry.target);
+                document.querySelectorAll('.dot').forEach((dot, i) => { dot.classList.toggle('active', i === index); });
+            }});
         }, observerOptions);
-
         sections.forEach(section => observer.observe(section));
-
-        // Fix for mobile view height
-        window.addEventListener('resize', () => {
-            let vh = window.innerHeight * 0.01;
-            document.documentElement.style.setProperty('--vh', `${vh}px`);
-        });
     </script>
 </body>
 </html>
