@@ -19,11 +19,7 @@
             --text-grey: #888888;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             background-color: var(--bg-black);
@@ -55,10 +51,7 @@
             transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        section.active .slide-content {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        section.active .slide-content { opacity: 1; transform: translateY(0); }
 
         .glow {
             position: absolute;
@@ -103,14 +96,13 @@
         
         .card {
             background: var(--dark-grey);
-            padding: 30px;
+            padding: 40px;
             border-radius: 8px;
             border: 1px solid var(--border-grey);
             transition: all 0.3s ease;
             height: 100%;
             position: relative;
         }
-
         .card:hover { border-color: var(--primary-lime); background: #111; transform: translateY(-5px); }
 
         .tag {
@@ -125,40 +117,33 @@
             margin-bottom: 20px;
         }
 
-        /* MAP STYLING */
-        .map-wrapper {
+        .index-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
             width: 100%;
-            background: #050505;
-            padding: 50px;
-            border: 1px solid var(--border-grey);
-            border-radius: 12px;
-            margin-top: 20px;
-            position: relative;
+            margin-top: 30px;
         }
-        .map-container { width: 100%; aspect-ratio: 16/9; position: relative; background: radial-gradient(circle at 90% 10%, rgba(215, 223, 34, 0.05) 0%, transparent 40%); }
-        .axis-x { position: absolute; top: 50%; left: 0; width: 100%; height: 1px; background: #333; z-index: 1; }
-        .axis-y { position: absolute; left: 50%; top: 0; width: 1px; height: 100%; background: #333; z-index: 1; }
-        .map-label { position: absolute; font-family: 'Montserrat'; font-weight: 900; font-size: 10px; text-transform: uppercase; color: var(--text-grey); background: var(--bg-black); padding: 4px 8px; white-space: nowrap; z-index: 5; border: 1px solid #222; }
-        .label-y-top { top: -35px; left: 50%; transform: translateX(-50%); color: var(--primary-lime); }
-        .label-y-bottom { bottom: -35px; left: 50%; transform: translateX(-50%); }
-        .label-x-left { top: 50%; left: -60px; transform: translateY(-50%) rotate(-90deg); }
-        .label-x-right { top: 50%; right: -60px; transform: translateY(-50%) rotate(90deg); color: var(--primary-lime); }
-        .brand-marker { position: absolute; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; transition: all 0.3s ease; z-index: 2; }
-        .marker-dot { width: 8px; height: 8px; border-radius: 50%; background: #555; margin-bottom: 5px; border: 1px solid #777; }
-        .marker-name { font-size: 10px; font-weight: 700; color: #999; white-space: nowrap; text-shadow: 2px 2px 4px rgba(0,0,0,0.9); background: rgba(0,0,0,0.4); padding: 2px 4px; border-radius: 2px; }
-        .marker-rest-round { z-index: 10; transform: translate(-50%, -50%) scale(1.1); }
-        .marker-rest-round .marker-dot { width: 12px; height: 12px; background: var(--primary-lime); box-shadow: 0 0 20px var(--primary-lime); border-color: var(--text-white); }
-        .marker-rest-round .marker-name { color: var(--text-white); font-weight: 900; font-size: 12px; background: rgba(0,0,0,0.8); border: 1px solid var(--primary-lime); }
+        @media (max-width: 768px) { .index-grid { grid-template-columns: 1fr; } }
+        
+        .index-item {
+            background: var(--dark-grey);
+            border: 1px solid var(--border-grey);
+            padding: 15px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+        .index-item:hover { border-color: var(--primary-lime); background: #111; transform: scale(1.02); }
+        .index-num { font-family: 'Montserrat'; font-weight: 900; color: var(--primary-lime); font-size: 16px; opacity: 0.5; }
+        .index-label { font-family: 'Montserrat'; font-weight: 700; text-transform: uppercase; color: var(--text-white); font-size: 12px; letter-spacing: 1px; }
 
-        .cycle-container { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
-        .cycle-item { display: flex; align-items: center; gap: 20px; background: var(--dark-grey); padding: 15px 20px; border-radius: 6px; border-left: 4px solid var(--mid-grey); }
-        .cycle-time { font-family: 'Montserrat'; font-weight: 900; font-size: 18px; color: var(--primary-lime); min-width: 90px; }
-        .cycle-content h4 { font-family: 'Montserrat'; text-transform: uppercase; font-size: 14px; margin-bottom: 2px; }
-
-        /* IMAGE CONTAINERS */
         .image-container {
             width: 100%;
-            height: 450px;
             background: var(--mid-grey);
             border: 1px solid var(--border-grey);
             display: flex;
@@ -167,40 +152,52 @@
             border-radius: 12px;
             overflow: hidden;
             position: relative;
+            aspect-ratio: 1/1;
         }
-        .image-container img { width: 100%; height: 100%; object-fit: cover; background: #000; }
+        .image-container img { width: 100%; height: 100%; object-fit: cover; display: block; }
         
-        /* SQUARE PICTURE OVERRIDE */
-        .square-pic {
-            aspect-ratio: 1/1 !important;
-            height: auto !important;
-            width: 100%;
-        }
+        .stat-box { border-top: 2px solid var(--primary-lime); padding-top: 20px; margin-top: 20px; }
+        .stat-val { font-family: 'Montserrat'; font-size: 48px; font-weight: 900; color: var(--text-white); }
+        .stat-label { font-size: 14px; text-transform: uppercase; color: var(--primary-lime); letter-spacing: 2px; }
 
-        .roadmap { display: flex; justify-content: space-between; position: relative; margin-top: 60px; }
-        .roadmap::before { content: ''; position: absolute; top: 25px; left: 0; width: 100%; height: 2px; background: var(--border-grey); }
-        @media (max-width: 600px) { 
-            .roadmap { flex-direction: column; gap: 40px; } .roadmap::before { display: none; }
-            .step { width: 100% !important; padding-top: 0 !important; border-left: 2px solid var(--border-grey); padding-left: 20px; }
-            .step::after { left: -10px !important; top: 0 !important; }
-        }
-        .step { position: relative; padding-top: 50px; width: 22%; }
-        .step::after { content: ''; position: absolute; top: 17px; left: 0; width: 18px; height: 18px; background: var(--primary-lime); border-radius: 50%; box-shadow: 0 0 15px var(--primary-lime); }
+        /* MAP */
+        .map-wrapper { width: 100%; background: #050505; padding: 50px; border: 1px solid var(--border-grey); border-radius: 12px; margin-top: 20px; position: relative; }
+        .map-container { width: 100%; aspect-ratio: 16/9; position: relative; }
+        .axis-x { position: absolute; top: 50%; left: 0; width: 100%; height: 1px; background: #333; }
+        .axis-y { position: absolute; left: 50%; top: 0; width: 1px; height: 100%; background: #333; }
+        .map-label { position: absolute; font-family: 'Montserrat'; font-weight: 900; font-size: 10px; text-transform: uppercase; color: var(--text-grey); background: var(--bg-black); padding: 4px 8px; white-space: nowrap; border: 1px solid #222; }
+        .label-y-top { top: -35px; left: 50%; transform: translateX(-50%); color: var(--primary-lime); }
+        .label-y-bottom { bottom: -35px; left: 50%; transform: translateX(-50%); }
+        .label-x-left { top: 50%; left: -60px; transform: translateY(-50%) rotate(-90deg); }
+        .label-x-right { top: 50%; right: -60px; transform: translateY(-50%) rotate(90deg); color: var(--primary-lime); }
+        .brand-marker { position: absolute; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; }
+        .marker-dot { width: 8px; height: 8px; border-radius: 50%; background: #555; margin-bottom: 5px; }
+        .marker-name { font-size: 10px; font-weight: 700; color: #999; white-space: nowrap; }
+        .marker-rest-round { z-index: 10; transform: translate(-50%, -50%) scale(1.1); color: var(--primary-lime); }
+        .marker-rest-round .marker-dot { background: var(--primary-lime); box-shadow: 0 0 15px var(--primary-lime); }
 
         .nav-dots { position: fixed; right: 20px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 12px; z-index: 100; }
         .dot { width: 8px; height: 8px; border: 1px solid #444; border-radius: 50%; cursor: pointer; }
-        .dot.active { background: var(--primary-lime); border-color: var(--primary-lime); transform: scale(1.4); }
+        .dot.active { background: var(--primary-lime); transform: scale(1.4); }
+
+        .cycle-item { display: flex; align-items: center; gap: 20px; background: var(--dark-grey); padding: 15px 20px; border-radius: 6px; border-left: 4px solid var(--mid-grey); margin-bottom: 10px; }
+        .cycle-time { font-family: 'Montserrat'; font-weight: 900; font-size: 18px; color: var(--primary-lime); min-width: 90px; }
+
+        .roadmap { display: flex; justify-content: space-between; position: relative; margin-top: 60px; }
+        .roadmap::before { content: ''; position: absolute; top: 25px; left: 0; width: 100%; height: 2px; background: var(--border-grey); }
+        .step { position: relative; padding-top: 50px; width: 22%; }
+        .step::after { content: ''; position: absolute; top: 17px; left: 0; width: 18px; height: 18px; background: var(--primary-lime); border-radius: 50%; box-shadow: 0 0 15px var(--primary-lime); }
 
         .product-focus-title { font-size: clamp(40px, 8vw, 80px); margin-bottom: 10px; color: var(--text-white); }
         .product-focus-title span { color: var(--primary-lime); }
 
-        .comparison-container { width: 100%; overflow-x: auto; margin-top: 30px; -webkit-overflow-scrolling: touch; }
-        table { width: 100%; min-width: 600px; border-collapse: collapse; text-align: left; }
-        th, td { padding: 15px; border-bottom: 1px solid var(--border-grey); }
-        th { font-family: 'Montserrat'; font-size: 12px; text-transform: uppercase; color: var(--text-grey); letter-spacing: 1px; }
-        .focus-col { background: rgba(215, 223, 34, 0.05); color: var(--text-white); font-weight: 700; }
-        .check { color: var(--primary-lime); font-size: 18px; }
-        .cross { color: #333; font-size: 18px; }
+        .highlight-box {
+            background: rgba(215, 223, 34, 0.05);
+            border: 1px solid var(--primary-lime);
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 4px;
+        }
 
     </style>
 </head>
@@ -208,41 +205,113 @@
 
     <div class="nav-dots" id="navDots"></div>
 
-    <!-- PAGE 1: HERO -->
-    <section id="page1">
+    <!-- 01: HERO -->
+    <section id="slide1">
         <div class="glow" style="top: -10%; left: -10%;"></div>
         <div class="slide-content" style="text-align: center;">
             <h1>REST<br><span>ROUND™</span></h1>
-            <p style="margin: 30px auto; font-size: clamp(18px, 4vw, 24px); max-width: 950px; color: var(--text-white); font-weight: 500;">
-                High-Performance Hygiene & Recovery. <br>Engineered for Combat Athletes. <br>
-                <span style="color: var(--primary-lime); font-weight: 900;">Built for Global Dominance.</span>
+            <p style="margin: 30px auto; font-size: 24px; max-width: 950px; color: var(--text-white); font-weight: 500;">
+                The High-Performance Operating System <br>for Combat Athletes. <br>
+                <span style="color: var(--primary-lime); font-weight: 900;">Engineering the "Ultimate Form."</span>
             </p>
             <div style="height: 4px; width: 120px; background: var(--primary-lime); margin: 0 auto;"></div>
         </div>
     </section>
 
-    <!-- PAGE 2: PHILOSOPHY -->
-    <section id="page2">
+    <!-- 02: AGENDA -->
+    <section id="pageIndex">
         <div class="slide-content">
-            <h2 class="slide-title">Protecting the Ultimate Form</h2>
+            <h2 class="slide-title">Executive Agenda</h2>
+            <div class="index-grid">
+                <a href="#slide3" class="index-item"><span class="index-num">01</span><span class="index-label">Philosophy</span></a>
+                <a href="#slide4" class="index-item"><span class="index-num">02</span><span class="index-label">The Problem</span></a>
+                <a href="#slide5" class="index-item"><span class="index-num">03</span><span class="index-label">Opportunity</span></a>
+                <a href="#slide6" class="index-item"><span class="index-num">04</span><span class="index-label">Positioning</span></a>
+                <a href="#slide7" class="index-item"><span class="index-num">05</span><span class="index-label">Fighter List™</span></a>
+                <a href="#slide8" class="index-item"><span class="index-num">06</span><span class="index-label">SWOT</span></a>
+                <a href="#slide9" class="index-item"><span class="index-num">07</span><span class="index-label">Global Scale</span></a>
+                <a href="#slide10" class="index-item"><span class="index-num">08</span><span class="index-label">The 24/7 OS</span></a>
+                <a href="#slide11" class="index-item"><span class="index-num">09</span><span class="index-label">Neural Priming</span></a>
+                <a href="#slide12" class="index-item"><span class="index-num">10</span><span class="index-label">Internal Hygiene</span></a>
+                <a href="#slide13" class="index-item"><span class="index-num">11</span><span class="index-label">Bio-Defense</span></a>
+                <a href="#slide14" class="index-item"><span class="index-num">12</span><span class="index-label">Skin Kit</span></a>
+                <a href="#slide15" class="index-item"><span class="index-num">13</span><span class="index-label">Reset Hardware</span></a>
+                <a href="#slide16" class="index-item"><span class="index-num">14</span><span class="index-label">Roadmap</span></a>
+                <a href="#slide17" class="index-item"><span class="index-num">15</span><span class="index-label">The Ask</span></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 03: PHILOSOPHY -->
+    <section id="slide3">
+        <div class="slide-content">
+            <h2 class="slide-title">Unlocking the Ultimate Form</h2>
             <div class="grid-2">
                 <div class="card" style="border-color: var(--primary-lime);">
-                    <h3>Unlocking Potential</h3>
-                    <p>A fighter's <strong>"Ultimate Form"</strong> — the absolute peak of their potential — is only achievable when downtime is eliminated. Non-stop protection and recovery are the fuel for greatness.</p>
+                    <h3>The Professional Standard</h3>
+                    <p>A fighter's <strong>"Ultimate Form"</strong> — the absolute peak of their potential — is only achievable when friction is eliminated. REST ROUND™ is the protocol that ensures the body is a 24/7 performance machine.</p>
                 </div>
                 <div class="card">
-                    <h3>The 24/7 Shield</h3>
-                    <p>We provide the mandatory ritual for combat dominance. By owning the full 24/7 lifecycle, we ensure that from the moment they wake until their gear is washed, the athlete is protected. No staph. No burnout. No friction. Just performance.</p>
+                    <h3>Peak Equilibrium</h3>
+                    <p>We provide the mandatory ritual for dominance. By owning hygiene, recovery, and supplements, we eliminate the downtime that ends careers.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PAGE 3: POSITIONING MAP -->
-    <section id="page3">
+    <!-- 04: THE PROBLEM -->
+    <section id="slide4">
         <div class="slide-content">
-            <h2 class="slide-title">Market Positioning</h2>
-            <p style="margin-bottom: 20px;">The only brand at the intersection of <strong>Top Performance</strong> and <strong>Elite Combat Focus.</strong></p>
+            <h2 class="slide-title">The Hygiene Liability</h2>
+            <div class="grid-2">
+                <div>
+                    <h3>The Staph Epidemic</h3>
+                    <p>In Combat Sports, hygiene is not "lifestyle"—it is <strong>survival</strong>. Bacterial and fungal infections cost athletes thousands in missed fights and gyms in reputation damage.</p>
+                    <div class="stat-box">
+                        <div class="stat-val">99%</div>
+                        <div class="stat-label">Combat practitioners experience skin issues</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>The Current Gap</h3>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom:15px;">- Generic Soap: Ineffective on mats.</li>
+                        <li style="margin-bottom:15px;">- Pharma: Harsh, clinical, "un-cool."</li>
+                        <li style="margin-bottom:15px;">- Supplements: Disconnected from recovery.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 05: MARKET OPPORTUNITY -->
+    <section id="slide5">
+        <div class="slide-content">
+            <h2 class="slide-title">The $4.5B Opportunity</h2>
+            <div class="grid-3">
+                <div class="card">
+                    <h3>TAM</h3>
+                    <div class="stat-val">$24B</div>
+                    <p>Global Sports Hygiene & Supplement Market.</p>
+                </div>
+                <div class="card" style="border-color: var(--primary-lime);">
+                    <h3>SAM</h3>
+                    <div class="stat-val">$4.5B</div>
+                    <p>High-Performance Combat & Cross-Training segment.</p>
+                </div>
+                <div class="card">
+                    <h3>SOM</h3>
+                    <div class="stat-val">$30M</div>
+                    <p>Projected capture through Digital & B2B networks.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 06: POSITIONING -->
+    <section id="slide6">
+        <div class="slide-content">
+            <h2 class="slide-title">Strategic Positioning</h2>
             <div class="map-wrapper">
                 <div class="map-container">
                     <div class="axis-x"></div><div class="axis-y"></div>
@@ -252,10 +321,8 @@
                     <div class="map-label label-x-right">Elite Combat Spec</div>
                     <div class="brand-marker" style="top: 15%; left: 15%;"><div class="marker-dot"></div><div class="marker-name">Aesop / Kiehl's</div></div>
                     <div class="brand-marker" style="top: 30%; left: 35%;"><div class="marker-dot"></div><div class="marker-name">Onnit (Supps)</div></div>
-                    <div class="brand-marker" style="top: 48%; left: 22%;"><div class="marker-dot"></div><div class="marker-name">Drink Wilder</div></div>
                     <div class="brand-marker" style="top: 85%; left: 12%;"><div class="marker-dot"></div><div class="marker-name">Sanabul / Generic</div></div>
                     <div class="brand-marker" style="top: 78%; left: 82%;"><div class="marker-dot"></div><div class="marker-name">Defense Soap</div></div>
-                    <div class="brand-marker" style="top: 60%; left: 88%;"><div class="marker-dot"></div><div class="marker-name">Hayabusa / Venum</div></div>
                     <div class="brand-marker" style="top: 35%; left: 85%;"><div class="marker-dot"></div><div class="marker-name">Shoyoroll</div></div>
                     <div class="brand-marker marker-rest-round" style="top: 12%; left: 90%;"><div class="marker-dot"></div><div class="marker-name">REST ROUND™</div></div>
                 </div>
@@ -263,204 +330,211 @@
         </div>
     </section>
 
-    <!-- PAGE 4: SWOT -->
-    <section id="page4">
+    <!-- 07: FIGHTER LIST™ HUB -->
+    <section id="slide7">
         <div class="slide-content">
-            <h2 class="slide-title">Elite Strategy (SWOT)</h2>
+            <h2 class="slide-title">Fighter List™ Nest</h2>
+            <div class="grid-2">
+                <div class="image-container">
+                    <img src="https://img.sanishtech.com/u/ad3048316a08ae9e3caa2d40d1fe1dfc.png" alt="Fighter List Ecosystem">
+                </div>
+                <div>
+                    <h3>The Strategic Engine</h3>
+                    <p>Fighter List™ is the community-driven hub that powers REST ROUND™ and the personal brand ecosystem.</p>
+                    <ul style="list-style: none; margin-top: 20px; font-size: 14px;">
+                        <li style="margin-bottom: 10px;"><i class="fa-solid fa-envelope" style="color: var(--primary-lime); margin-right: 10px;"></i> <strong>Email Engine:</strong> High-conversion retention automation.</li>
+                        <li style="margin-bottom: 10px;"><i class="fa-solid fa-layer-group" style="color: var(--primary-lime); margin-right: 10px;"></i> <strong>Unified Directory:</strong> Combined social, gym, and fight data.</li>
+                        <li style="margin-bottom: 10px;"><i class="fa-solid fa-handshake" style="color: var(--primary-lime); margin-right: 10px;"></i> <strong>Sponsorship Hub:</strong> Matching fighters with high-performance brands.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 08: SWOT -->
+    <section id="slide8">
+        <div class="slide-content">
+            <h2 class="slide-title">Strategic SWOT</h2>
             <div class="grid-4">
                 <div class="card" style="border-left: 5px solid var(--primary-lime);">
                     <h3>Form (Strengths)</h3>
-                    <p style="font-size: 12px; color: var(--primary-lime); margin-bottom: 8px;">The Blueprint of Top Fighters</p>
                     <ul style="list-style: none; font-size: 14px; color: var(--text-grey);">
-                        <li>+ 3-Pillar Ecosystem: Hygiene, Recov, Supps</li>
-                        <li>+ Artist-Led Elite Aesthetic Authority</li>
-                        <li>+ China Manufacturing Speed & Cost Edge</li>
+                        <li>+ Artist-Led Elite Aesthetic</li>
+                        <li>+ 24/7 Total Protocol (OS)</li>
+                        <li>+ Fighter List™ Proprietary Data</li>
                     </ul>
                 </div>
                 <div class="card" style="border-left: 5px solid #444;">
                     <h3>Friction (Weaknesses)</h3>
                     <ul style="list-style: none; font-size: 14px; color: var(--text-grey);">
-                        <li>- Early stage market penetration</li>
-                        <li>- Lean operational core for global scaling</li>
-                        <li>- Education gap vs legacy "basic hygiene"</li>
+                        <li>- Early stage awareness</li>
+                        <li>- Lean operational core</li>
                     </ul>
                 </div>
                 <div class="card" style="border-left: 5px solid var(--primary-lime);">
                     <h3>Expansion (Opportunities)</h3>
                     <ul style="list-style: none; font-size: 14px; color: var(--text-grey);">
-                        <li>+ GEO AI Dominance for "True potential"</li>
-                        <li>+ Global FBA Scale (US/EU/Asia)</li>
-                        <li>+ 24/7 Subscription Protocol Stacks</li>
+                        <li>+ GEO AI Search Dominance</li>
+                        <li>+ Subscription Protocol Stacks</li>
                     </ul>
                 </div>
                 <div class="card" style="border-left: 5px solid #444;">
                     <h3>Resistance (Threats)</h3>
                     <ul style="list-style: none; font-size: 14px; color: var(--text-grey);">
-                        <li>- Logistics volatility (China -> West)</li>
-                        <li>- Price wars from generic pharma soaps</li>
-                        <li>- Low-quality copycat nootropics</li>
+                        <li>- Global Logistics volatility</li>
+                        <li>- Price wars from generic brands</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PAGE 5: 24/7 TIMELINE -->
-    <section id="page5">
+    <!-- 09: GLOBAL SCALE -->
+    <section id="slide9">
         <div class="slide-content">
-            <h2 class="slide-title">Fighter 24/7</h2>
-            <div class="cycle-container">
-                <div class="cycle-item"><div class="cycle-time">08:00 AM</div><div class="cycle-content"><h4>Neural Priming</h4><p>Cognitive sharpened. Vision for reaction.</p></div></div>
-                <div class="cycle-item"><div class="cycle-time">11:00 AM</div><div class="cycle-content"><h4>Internal Hygiene</h4><p>Skin armor protection from the inside.</p></div></div>
-                <div class="cycle-item"><div class="cycle-time">01:00 PM</div><div class="cycle-content"><h4>Immediate Defense</h4><p>Mat decontamination on contact.</p></div></div>
-                <div class="cycle-item"><div class="cycle-time">09:00 PM</div><div class="cycle-content"><h4>Precision Reset</h4><p>Hardware maintenance and gear prep.</p></div></div>
+            <h2 class="slide-title">Global Scale</h2>
+            <div class="grid-2">
+                <div>
+                    <h3>China Manufacturing Edge</h3>
+                    <p>We leverage high-speed, precision manufacturing in China to achieve institutional quality at disruptive speed-to-market.</p>
+                    <div class="stat-box">
+                        <div class="stat-val">DIRECT</div>
+                        <div class="stat-label">Source-to-Affiliate model</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>Distribution Model</h3>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom:15px;"><i class="fa-solid fa-plane"></i> <strong>Direct Global:</strong> Warehousing SEA/EU/US.</li>
+                        <li style="margin-bottom:15px;"><i class="fa-solid fa-shop"></i> <strong>B2B:</strong> Elite Gym Affiliate network.</li>
+                        <li style="margin-bottom:15px;"><i class="fa-solid fa-repeat"></i> <strong>Subscription:</strong> Monthly Protocol kits.</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- PAGE 6: FIGHT IQ (SQUARE) -->
-    <section id="page6">
+    <!-- 10: 24/7 TIMELINE -->
+    <section id="slide10">
+        <div class="slide-content">
+            <h2 class="slide-title">The 24/7 OS</h2>
+            <div class="cycle-container">
+                <div class="cycle-item"><div class="cycle-time">08:00 AM</div><div class="cycle-content"><h4>Neural Priming</h4><p>Cognitive sharpening for reaction.</p></div></div>
+                <div class="cycle-item"><div class="cycle-time">11:00 AM</div><div class="cycle-content"><h4>Internal Hygiene</h4><p>Dermis protection from within.</p></div></div>
+                <div class="cycle-item"><div class="cycle-time">01:00 PM</div><div class="cycle-content"><h4>Immediate Defense</h4><p>Neutralizing pathogens on contact.</p></div></div>
+                <div class="cycle-item"><div class="cycle-time">09:00 PM</div><div class="cycle-content"><h4>Precision Reset</h4><p>Hardware and microbiome restoration.</p></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11: FIGHT IQ -->
+    <section id="slide11">
         <div class="slide-content">
             <div class="tag">08:00 AM — Neural Priming</div>
             <h2 class="product-focus-title">Fight <span>IQ</span></h2>
             <div class="grid-2">
-                <div>
-                    <h3>Focus Pouches</h3>
-                    <p>Unlock true potential through cognitive speed. Zero nicotine. Zero crash. 200mg Nootropic stack for reaction dominance.</p>
-                </div>
-                <div class="image-container square-pic">
-                    <img src="https://i.postimg.cc/L5CsZ9F6/fe93b36f-70be-4b85-8b1e-f2c181efe8f7.jpg" alt="Rest Round FIGHT IQ">
-                </div>
+                <div><h3>Focus Pouches</h3><p>200mg Nootropic stack for reaction dominance. Zero nicotine. Zero crash.</p></div>
+                <div class="image-container"><img src="https://i.postimg.cc/L5CsZ9F6/fe93b36f-70be-4b85-8b1e-f2c181efe8f7.jpg" alt="Fight IQ"></div>
             </div>
         </div>
     </section>
 
-    <!-- PAGE 7: INTERNAL HYGIENE (SQUARE) -->
-    <section id="page7">
+    <!-- 12: INTERNAL HYGIENE -->
+    <section id="slide12">
         <div class="slide-content">
             <div class="tag">11:00 AM — Internal Hygiene</div>
             <h2 class="product-focus-title">Skin <span>Armor</span></h2>
             <div class="grid-2">
-                <div class="image-container square-pic">
-                    <img src="https://i.postimg.cc/L5CsZ9F6/fe93b36f-70be-4b85-8b1e-f2c181efe8f7.jpg" alt="Probiotic Electrolytes">
-                </div>
-                <div>
-                    <h3>Probiotic Electrolytes</h3>
-                    <p>Fueling the internal microbiome to protect the external skin during extreme sweat cycles. Hygiene that starts inside.</p>
-                </div>
+                <div class="image-container"><img src="https://img.sanishtech.com/u/f7e1c15b1d7291e333916664196b5469.png" alt="Probiotic Electrolytes"></div>
+                <div><h3>Probiotic Electrolytes</h3><p>Internal hygiene. Fueling the gut to protect the skin barrier during sweat cycles.</p></div>
             </div>
         </div>
     </section>
 
-    <!-- PAGE 8: IMMEDIATE DEFENSE (SQUARE) -->
-    <section id="page8">
+    <!-- 13: TACTICAL SHIELD -->
+    <section id="slide13">
         <div class="slide-content">
             <div class="tag">01:00 PM — Immediate Defense</div>
-            <h2 class="product-focus-title">Tactical <span>Bio-Shield</span></h2>
+            <h2 class="product-focus-title">Tactical <span>Shield</span></h2>
             <div class="grid-2">
-                <div>
-                    <h3>HOCL Flagship Spray</h3>
-                    <p>The medical standard. Instant neutralization of mat-born pathogens on skin and gear.</p>
-                </div>
-                <div class="image-container square-pic">
-                    <img src="https://restround.co/cdn/shop/files/80ml_bottle_copy-2_copy1_55e022a2-8ef9-4f39-b9a1-c619c7d65302.jpg?v=1772604357&width=3840" alt="Combat Spray">
-                </div>
+                <div><h3>HOCL Flagship Spray</h3><p>The medical standard. Instant elimination of mat-born pathogens on gear and skin.</p></div>
+                <div class="image-container"><img src="https://restround.co/cdn/shop/files/80ml_bottle_copy-2_copy1_55e022a2-8ef9-4f39-b9a1-c619c7d65302.jpg" alt="HOCL Spray"></div>
             </div>
         </div>
     </section>
 
-    <!-- PAGE 9: COMBAT SKIN KIT (SQUARES) -->
-    <section id="page9">
+    <!-- 14: COMBAT SKIN KIT -->
+    <section id="slide14">
         <div class="slide-content">
-            <div class="tag">07:00 PM — The Bio-Reset</div>
-            <h2 class="product-focus-title">Combat <span>Skin Kit</span></h2>
+            <div class="tag">07:00 PM — Bio-Reset</div>
+            <h2 class="product-focus-title">Skin <span>Kit</span></h2>
             <div class="grid-3">
-                <div class="card">
-                    <div class="image-container square-pic" style="margin-bottom: 15px;">
-                        <i class="fa-solid fa-soap" style="font-size: 40px; color: #222;"></i>
-                    </div>
-                    <h3>Shower Gel</h3>
-                    <p>Antimicrobial wash designed to remove mat bacteria without stripping the skin.</p>
-                </div>
-                <div class="card" style="border-color: var(--primary-lime);">
-                    <div class="image-container square-pic" style="margin-bottom: 15px;">
-                        <i class="fa-solid fa-cube" style="font-size: 40px; color: #222;"></i>
-                    </div>
-                    <h3>Probiotic Soap</h3>
-                    <p>Active probiotic reset to re-seed the skin's defense barrier.</p>
-                </div>
-                <div class="card">
-                    <div class="image-container square-pic" style="margin-bottom: 15px;">
-                        <i class="fa-solid fa-hand-holding-droplet" style="font-size: 40px; color: #222;"></i>
-                    </div>
-                    <h3>Probiotic Cream</h3>
-                    <p>High-absorption rebuild cream that seals in protection overnight.</p>
-                </div>
+                <div class="card"><div class="image-container"><img src="https://i.pinimg.com/1200x/d9/89/09/d98909d05206d8a712810096d9fd6e89.jpg" alt="Shower Gel"></div><h3>Shower Gel</h3></div>
+                <div class="card" style="border-color: var(--primary-lime);"><div class="image-container"><img src="https://i.pinimg.com/1200x/80/dd/94/80dd94c6c6e8305956d903ffaeb86dac.jpg" alt="Soap"></div><h3>Probiotic Soap</h3></div>
+                <div class="card"><div class="image-container"><img src="https://i.pinimg.com/736x/76/67/32/766732b98c49778be5f59606fefca072.jpg" alt="Cream"></div><h3>Probiotic Cream</h3></div>
             </div>
         </div>
     </section>
 
-    <!-- PAGE 10: PRECISION RESET (SQUARES) -->
-    <section id="page10">
+    <!-- 15: HARDWARE RESET -->
+    <section id="slide15">
         <div class="slide-content">
-            <div class="tag">09:00 PM — Hardware Reset</div>
-            <h2 class="product-focus-title">Precision <span>Reset</span></h2>
+            <div class="tag">09:00 PM — Reset</div>
+            <h2 class="product-focus-title">Hardware <span>Reset</span></h2>
             <div class="grid-3">
-                <div class="card">
-                    <div class="image-container square-pic" style="margin-bottom: 15px;">
-                         <img src="https://restround.co/cdn/shop/files/Callus_Remover.png?v=1708420658&width=800" alt="Callus Remover">
-                    </div>
-                    <h3>Callus Care</h3>
-                    <p>Maintaining foot skin integrity to prevent infection entry points.</p>
-                </div>
-                <div class="card">
-                    <div class="image-container square-pic" style="margin-bottom: 15px;">
-                        <i class="fa-solid fa-scissors" style="font-size: 40px; color: #222;"></i>
-                    </div>
-                    <h3>Precision Clipper</h3>
-                    <p>Safety-first precision trimmers for zero-snag nails.</p>
-                </div>
-                <div class="card">
-                    <div class="image-container square-pic" style="margin-bottom: 15px;">
-                        <img src="https://restround.co/cdn/shop/files/Mouth_Guard_Cleaner_Tablets.png?v=1708420658&width=800" alt="Mouth Guard Cleaner">
-                    </div>
-                    <h3>Oral Reset</h3>
-                    <p>Deep-cleaning tablets for gear decontamination.</p>
-                </div>
+                <div class="card"><div class="image-container"><img src="https://restround.co/cdn/shop/files/IMG_4458copy.jpg" alt="Callus"></div><h3>Callus Care</h3></div>
+                <div class="card"><div class="image-container"><img src="https://restround.co/cdn/shop/files/a2bd8bb7-3b37-4a3b-9465-4b79a538b290.png" alt="Clipper"></div><h3>Precision Clipper</h3></div>
+                <div class="card"><div class="image-container"><img src="https://restround.co/cdn/shop/files/mouthguardcleanserboxnewcopy.jpg" alt="Mouthguard"></div><h3>Oral Reset</h3></div>
             </div>
         </div>
     </section>
 
-    <!-- PAGE 11: ROADMAP -->
-    <section id="page11">
+    <!-- 16: ROADMAP -->
+    <section id="slide16">
         <div class="slide-content">
-            <h2 class="slide-title">The Roadmap to $3M</h2>
+            <h2 class="slide-title">The Roadmap to SCALE</h2>
             <div class="roadmap">
                 <div class="step"><h3>APR</h3><p>HOCL Spray Live.</p></div>
-                <div class="step"><h3>MAY</h3><p>Defense Wipes Launch.</p></div>
-                <div class="step"><h3>JUN</h3><p>Laundry Sheets Launch.</p></div>
+                <div class="step"><h3>MAY</h3><p>Defense Wipes.</p></div>
+                <div class="step"><h3>JUN</h3><p>Laundry Sheets.</p></div>
                 <div class="step"><h3>JUL</h3><p>Fuel & Focus Sprint.</p></div>
             </div>
         </div>
     </section>
 
-    <!-- PAGE 12: THE ASK -->
-    <section id="page12">
+    <!-- 17: THE ASK (UPDATED) -->
+    <section id="slide17">
         <div class="slide-content">
             <div class="card" style="border: 2px solid var(--primary-lime); text-align: center; padding: 60px;">
-                <h2 style="font-size: clamp(30px, 5vw, 60px); color: var(--text-white);">Strategic Opportunity</h2>
-                <p style="margin: 20px 0; font-size: 22px; color: var(--primary-lime); font-weight: 900;">Offering 10% — 20% Founder Equity</p>
-                <p style="max-width: 600px; margin: 0 auto;">Seeking partners to accelerate the 24/7 Combat OS and own the top performance category.</p>
+                <h2 style="font-size: clamp(32px, 5vw, 48px); margin-bottom: 10px;">Strategic Opportunity</h2>
+                <div class="tag" style="margin-bottom: 30px;">Founder Equity Stake</div>
+                
+                <h3 style="font-size: clamp(24px, 4vw, 36px); color: var(--text-white); margin-bottom: 20px;">
+                    10% — 20% EQUITY
+                </h3>
+                
+                <p style="max-width: 700px; margin: 0 auto 30px; font-size: 20px; color: var(--text-white);">
+                    Seeking the right partners to accelerate global distribution and own the combat hygiene category.
+                </p>
+
+                <div class="highlight-box">
+                    <p style="color: var(--primary-lime); font-weight: 900; text-transform: uppercase; letter-spacing: 2px;">
+                        Founder Mandate: 100% Product Development Control
+                    </p>
+                    <p style="font-size: 14px; margin-top: 10px; color: var(--text-grey);">
+                        Ensuring the uncompromising standard of the REST ROUND™ formula and 24/7 protocol as we scale.
+                    </p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- PAGE 13: CLOSING -->
-    <section id="page13">
+    <!-- 18: CLOSING -->
+    <section id="slide18">
         <div class="glow" style="bottom: -10%; right: -10%;"></div>
         <div class="slide-content" style="text-align: center;">
-            <h2 style="font-size: clamp(60px, 10vw, 110px); margin-bottom: 20px;">LET'S <span>SCALE.</span></h2>
-            <p style="font-size: 24px; color: var(--text-white); font-weight: 700;">team.restround@gmail.com</p>
+            <h2 style="font-size: 110px;">LET'S <span>SCALE.</span></h2>
+            <p style="font-size: 24px; font-weight: 700;">team.restround@gmail.com</p>
             <div style="margin-top: 40px; color: var(--text-grey); text-transform: uppercase; letter-spacing: 4px; font-size: 14px;">Engineered for the 24/7 Fighter</div>
         </div>
     </section>
@@ -468,19 +542,28 @@
     <script>
         const sections = document.querySelectorAll('section');
         const navDotsContainer = document.getElementById('navDots');
-        sections.forEach((_, i) => {
-            const dot = document.createElement('div'); dot.classList.add('dot'); if (i === 0) dot.classList.add('active');
-            dot.addEventListener('click', () => { window.scrollTo({ top: i * window.innerHeight, behavior: 'smooth' }); });
+        
+        sections.forEach((section, i) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => {
+                section.scrollIntoView({ behavior: 'smooth' });
+            });
             navDotsContainer.appendChild(dot);
         });
-        const observerOptions = { threshold: 0.5 };
+
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-                const index = Array.from(sections).indexOf(entry.target);
-                document.querySelectorAll('.dot').forEach((dot, i) => { dot.classList.toggle('active', i === index); });
-            }});
-        }, observerOptions);
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    const index = Array.from(sections).indexOf(entry.target);
+                    document.querySelectorAll('.dot').forEach((dot, i) => {
+                        dot.classList.toggle('active', i === index);
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
         sections.forEach(section => observer.observe(section));
     </script>
 </body>
