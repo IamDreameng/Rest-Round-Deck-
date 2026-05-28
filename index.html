@@ -189,7 +189,7 @@
 
         .roadmap { display: flex; justify-content: space-between; position: relative; margin-top: 60px; }
         .roadmap::before { content: ''; position: absolute; top: 25px; left: 0; width: 100%; height: 2px; background: var(--border-grey); }
-        .step { position: relative; padding-top: 50px; width: 22%; }
+        .step { position: relative; padding-top: 50px; width: 30%; }
         .step::after { content: ''; position: absolute; top: 17px; left: 0; width: 18px; height: 18px; background: var(--primary-lime); border-radius: 50%; box-shadow: 0 0 15px var(--primary-lime); }
 
         .product-focus-title { font-size: clamp(40px, 8vw, 80px); margin-bottom: 10px; color: var(--text-white); }
@@ -200,6 +200,89 @@
         .gift-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; list-style: none; }
         .gift-list li { font-size: 14px; color: var(--text-grey); display: flex; align-items: center; gap: 8px; }
         .gift-list i { color: var(--primary-lime); font-size: 10px; }
+
+        /* PARTNERSHIP OPTION CARDS */
+        .option-badge {
+            display: inline-block;
+            font-family: 'Montserrat';
+            font-weight: 900;
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            border-radius: 3px;
+            margin-bottom: 18px;
+        }
+        .option-badge.opt-a { background: var(--primary-lime); color: #000; }
+        .option-badge.opt-b { background: transparent; border: 1px solid var(--primary-lime); color: var(--primary-lime); }
+
+        .option-card {
+            background: var(--dark-grey);
+            border: 1px solid var(--border-grey);
+            border-radius: 10px;
+            padding: 36px 32px;
+            height: 100%;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .option-card.featured { border-color: var(--primary-lime); background: #0d0d0d; }
+        .option-card:hover { transform: translateY(-4px); }
+        .option-card .option-title { font-family: 'Montserrat'; font-weight: 900; font-size: clamp(22px, 3vw, 30px); text-transform: uppercase; letter-spacing: -1px; margin-bottom: 16px; color: var(--text-white); line-height: 1.1; }
+        .option-card .option-title span { color: var(--primary-lime); }
+        .option-card ul { list-style: none; margin-top: 16px; }
+        .option-card ul li { font-size: 14px; color: var(--text-grey); padding: 7px 0; border-bottom: 1px solid #1a1a1a; display: flex; gap: 10px; align-items: flex-start; }
+        .option-card ul li:last-child { border-bottom: none; }
+        .option-card ul li i { color: var(--primary-lime); font-size: 11px; margin-top: 4px; flex-shrink: 0; }
+        .or-divider {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .or-divider span {
+            font-family: 'Montserrat';
+            font-weight: 900;
+            font-size: 13px;
+            color: var(--text-grey);
+            letter-spacing: 3px;
+            background: var(--bg-black);
+            padding: 8px 4px;
+        }
+        .or-divider::before, .or-divider::after {
+            content: '';
+            flex: 1;
+            width: 1px;
+            background: var(--border-grey);
+        }
+
+        /* PRODUCT GRID on page 17b */
+        .product-mini-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-top: 30px;
+        }
+        @media (max-width: 900px) { .product-mini-grid { grid-template-columns: repeat(2, 1fr); } }
+        .product-mini-card {
+            background: var(--dark-grey);
+            border: 1px solid var(--border-grey);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .product-mini-card:hover { border-color: var(--primary-lime); transform: translateY(-4px); }
+        .product-mini-img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            overflow: hidden;
+            background: var(--mid-grey);
+        }
+        .product-mini-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .product-mini-info { padding: 14px; }
+        .product-mini-info h4 { font-family: 'Montserrat'; font-weight: 900; font-size: 12px; text-transform: uppercase; color: var(--text-white); margin-bottom: 4px; letter-spacing: 0.5px; }
+        .product-mini-info p { font-size: 12px; color: var(--text-grey); line-height: 1.4; }
+        .product-mini-tag { font-size: 10px; font-weight: 700; color: var(--primary-lime); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
     </style>
 </head>
 <body>
@@ -239,8 +322,10 @@
                 <a href="#slide15" class="index-item"><span class="index-num">13</span><span class="index-label">Combat Skin Kit</span></a>
                 <a href="#slide16" class="index-item"><span class="index-num">14</span><span class="index-label">Reset Hardware</span></a>
                 <a href="#slide17" class="index-item"><span class="index-num">15</span><span class="index-label">Elite Seeding Package</span></a>
-                <a href="#slide18" class="index-item"><span class="index-num">16</span><span class="index-label">Roadmap to SCALE</span></a>
-                <a href="#slide19" class="index-item"><span class="index-num">17</span><span class="index-label">The Ask</span></a>
+                <a href="#slide17b" class="index-item"><span class="index-num">16</span><span class="index-label">The Partnership</span></a>
+                <a href="#slide17c" class="index-item"><span class="index-num">17</span><span class="index-label">The Full Arsenal</span></a>
+                <a href="#slide18" class="index-item"><span class="index-num">18</span><span class="index-label">Roadmap to SCALE</span></a>
+                <a href="#slide19" class="index-item"><span class="index-num">19</span><span class="index-label">The Ask</span></a>
             </div>
         </div>
     </section>
@@ -562,15 +647,184 @@
         </div>
     </section>
 
-    <!-- 18: ROADMAP TO SCALE -->
+    <!-- 17B: THE PARTNERSHIP — TWO OPTIONS -->
+    <section id="slide17b">
+        <div class="glow" style="top: 10%; right: -20%;"></div>
+        <div class="slide-content">
+            <div class="tag">Strategic Partnership Proposal</div>
+            <h2 class="slide-title">Two Paths.<br>One Vision.</h2>
+            <p style="margin-bottom: 36px; max-width: 700px;">REST ROUND™ and Bangtao Muay Thai & MMA are already aligned. Here are two ways we build together.</p>
+
+            <div style="display: grid; grid-template-columns: 1fr 48px 1fr; gap: 0; align-items: stretch;">
+                <!-- OPTION A -->
+                <div class="option-card featured">
+                    <div class="option-badge opt-a">Option A — Equity</div>
+                    <div class="option-title">20% Stake<br><span>in REST ROUND™</span></div>
+                    <p style="font-size: 15px; margin-bottom: 4px;">Bangtao invests in REST ROUND™ and becomes a founding partner — directly owning a share of a category-defining brand built in its own backyard.</p>
+                    <ul>
+                        <li><i class="fa-solid fa-circle-check"></i> 20% equity in REST ROUND™ for Bangtao Muay Thai & MMA</li>
+                        <li><i class="fa-solid fa-circle-check"></i> REST ROUND™ becomes Bangtao's official hygiene & performance partner</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Exclusive retail presence across all Bangtao gym locations</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Co-branded seeding with Bangtao's global fighter roster</li>
+                        <li><i class="fa-solid fa-circle-check"></i> 100% founder control retained on product development & brand direction</li>
+                    </ul>
+                    <div class="highlight-box" style="margin-top: 24px;">
+                        <p style="color: var(--primary-lime); font-weight: 900; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">Bangtao grows REST ROUND™. REST ROUND™ grows Bangtao.</p>
+                    </div>
+                </div>
+
+                <!-- DIVIDER -->
+                <div class="or-divider">
+                    <span>OR</span>
+                </div>
+
+                <!-- OPTION B -->
+                <div class="option-card">
+                    <div class="option-badge opt-b">Option B — Role</div>
+                    <div class="option-title">Product Director<br><span>at Bangtao</span></div>
+                    <p style="font-size: 15px; margin-bottom: 4px;">A role inside Bangtao as Product Director — contributing immediately with existing skills in branding, e-commerce, and product development while building the REST ROUND™ ecosystem from within.</p>
+                    <ul>
+                        <li><i class="fa-solid fa-circle-check"></i> Immediate contribution in e-commerce, product strategy & brand direction</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Deep learning of Bangtao's operational and commercial infrastructure</li>
+                        <li><i class="fa-solid fa-circle-check"></i> REST ROUND™ grows alongside Bangtao — a tight, compounding bond</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Aligned incentives: the better Bangtao performs, the better REST ROUND™ grows</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Long-term vision: build both brands into a global combat lifestyle empire</li>
+                    </ul>
+                    <div class="highlight-box" style="margin-top: 24px;">
+                        <p style="color: var(--primary-lime); font-weight: 900; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">Two brands. One team. Growing together.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 17C: THE FULL ARSENAL — PRODUCT SHOWCASE -->
+    <section id="slide17c">
+        <div class="slide-content">
+            <div class="tag">The Full REST ROUND™ Ecosystem</div>
+            <h2 class="slide-title">The Full<br><span style="color: var(--primary-lime);">Arsenal</span></h2>
+            <p style="margin-bottom: 8px;">11 products engineered around the 24/7 combat athlete operating system — from first training to last rep.</p>
+
+            <div class="product-mini-grid">
+                <div class="product-mini-card">
+                    <div class="product-mini-img"><img src="https://restround.co/cdn/shop/files/80ml_bottle_copy-2_copy1_55e022a2-8ef9-4f39-b9a1-c619c7d65302.jpg" alt="HOCL Spray"></div>
+                    <div class="product-mini-info">
+                        <div class="product-mini-tag">Post-Mat</div>
+                        <h4>HOCL Spray</h4>
+                        <p>Medical-grade instant pathogen elimination.</p>
+                    </div>
+                </div>
+                <div class="product-mini-card" style="border-color: var(--primary-lime);">
+                    <div class="product-mini-img"><img src="https://i.postimg.cc/wB7hjxPR/b2e30042-e2b2-44a0-bec3-2119da471fa2.jpg" alt="Defense Wipes"></div>
+                    <div class="product-mini-info">
+                        <div class="product-mini-tag">Post-Mat</div>
+                        <h4>Defense Wipes</h4>
+                        <p>Tactical decon. No shower required.</p>
+                    </div>
+                </div>
+                <div class="product-mini-card">
+                    <div class="product-mini-img"><img src="https://i.postimg.cc/s2QhR6QH/Gemini-Generated-Image-aa03k7aa03k7aa03-copy.png" alt="Laundry Sheets"></div>
+                    <div class="product-mini-info">
+                        <div class="product-mini-tag">Gear Reset</div>
+                        <h4>Laundry Sheets</h4>
+                        <p>Deep-clean for Gi and No-Gi fabrics.</p>
+                    </div>
+                </div>
+                <div class="product-mini-card">
+                    <div class="product-mini-img"><img src="https://i.postimg.cc/L5CsZ9F6/fe93b36f-70be-4b85-8b1e-f2c181efe8f7.jpg" alt="Focus Pouches"></div>
+                    <div class="product-mini-info">
+                        <div class="product-mini-tag">08:00 AM</div>
+                        <h4>Fight IQ Pouches</h4>
+                        <p>200mg nootropic. Zero nicotine. Zero crash.</p>
+                    </div>
+                </div>
+                <div class="product-mini-card">
+                    <div class="product-mini-img"><img src="https://cdn.shopify.com/s/files/1/0686/2585/8648/files/3ca02310-65b1-4bf7-81d9-66366b65c547.png?v=1777637894" alt="Electrolytes"></div>
+                    <div class="product-mini-info">
+                        <div class="product-mini-tag">11:00 AM</div>
+                        <h4>Probiotic Electrolytes</h4>
+                        <p>Gut biome protection from the inside out.</p>
+                    </div>
+                </div>
+                <div class="product-mini-card">
+                    <div class="product-mini-img"><img src="https://i.pinimg.com/1200x/d9/89/09/d98909d05206d8a712810096d9fd6e89.jpg" alt="Shower Gel"></div>
+                    <div class="product-mini-info">
+                        <div class="product-mini-tag">07:00 PM</div>
+                        <h4>Probiotic Shower Gel</h4>
+                        <p>Antimicrobial full body reset.</p>
+                    </div>
+                </div>
+                <div class="product-mini-card" style="border-color: var(--primary-lime);">
+                    <div class="product-mini-img"><img src="https://i.pinimg.com/1200x/80/dd/94/80dd94c6c6e8305956d903ffaeb86dac.jpg" alt="Antibiotic Soap"></div>
+                    <div class="product-mini-info">
+                        <div class="product-mini-tag">07:00 PM</div>
+                        <h4>Antibiotic Bar Soap</h4>
+                        <p>Probiotic-seeded survival soap for the mat.</p>
+                    </div>
+                </div>
+                <div class="product-mini-card">
+                    <div class="product-mini-img"><img src="https://i.pinimg.com/736x/76/67/32/766732b98c49778be5f59606fefca072.jpg" alt="Probiotic Cream"></div>
+                    <div class="product-mini-info">
+                        <div class="product-mini-tag">07:00 PM</div>
+                        <h4>Probiotic Cream</h4>
+                        <p>Biome rebuilding. Overnight protection.</p>
+                    </div>
+                </div>
+                <div class="product-mini-card">
+                    <div class="product-mini-img"><img src="https://restround.co/cdn/shop/files/IMG_4458copy.jpg" alt="Callus Care"></div>
+                    <div class="product-mini-info">
+                        <div class="product-mini-tag">09:00 PM</div>
+                        <h4>Callus Care Kit</h4>
+                        <p>Foot skin integrity maintenance.</p>
+                    </div>
+                </div>
+                <div class="product-mini-card">
+                    <div class="product-mini-img"><img src="https://restround.co/cdn/shop/files/a2bd8bb7-3b37-4a3b-9465-4b79a538b290.png" alt="Clippers"></div>
+                    <div class="product-mini-info">
+                        <div class="product-mini-tag">09:00 PM</div>
+                        <h4>Precision Clippers</h4>
+                        <p>Safety-first zero-snag nail trimmers.</p>
+                    </div>
+                </div>
+                <div class="product-mini-card">
+                    <div class="product-mini-img"><img src="https://restround.co/cdn/shop/files/mouthguardcleanserboxnewcopy.jpg" alt="Oral Reset"></div>
+                    <div class="product-mini-info">
+                        <div class="product-mini-tag">09:00 PM</div>
+                        <h4>Oral Reset Tablets</h4>
+                        <p>Deep-clean mouthguard decontamination.</p>
+                    </div>
+                </div>
+                <div class="product-mini-card" style="border-color: var(--primary-lime); background: rgba(215,223,34,0.03);">
+                    <div class="product-mini-img" style="display:flex;align-items:center;justify-content:center;background:#0a0a0a;">
+                        <i class="fa-solid fa-plus" style="font-size:36px; color: var(--primary-lime);"></i>
+                    </div>
+                    <div class="product-mini-info">
+                        <div class="product-mini-tag">Coming Soon</div>
+                        <h4>Next Drop TBA</h4>
+                        <p>The ecosystem keeps expanding. Stay locked in.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 18: ROADMAP TO SCALE (UPDATED) -->
     <section id="slide18">
         <div class="slide-content">
             <h2 class="slide-title">The Roadmap to SCALE</h2>
             <div class="roadmap">
-                <div class="step"><h3>APR</h3><p>HOCL Spray Live.</p></div>
-                <div class="step"><h3>MAY</h3><p>Defense Wipes.</p></div>
-                <div class="step"><h3>JUN</h3><p>Laundry Sheets.</p></div>
-                <div class="step"><h3>JUL</h3><p>Fuel & Focus Sprint.</p></div>
+                <div class="step">
+                    <h3>APR</h3>
+                    <p>HOCL Spray Live.</p>
+                </div>
+                <div class="step">
+                    <h3>JUN</h3>
+                    <p>Laundry Sheets.</p>
+                </div>
+                <div class="step">
+                    <h3>JUL</h3>
+                    <p>Stay tuned.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -595,7 +849,7 @@
     <section id="slide20">
         <div class="glow" style="bottom: -10%; right: -10%;"></div>
         <div class="slide-content" style="text-align: center;">
-            <h2 style="font-size: 110px;">LET'S <span>SCALE.</span></h2>
+            <h2 style="font-size: 110px;">LET'S <span style="color:var(--primary-lime);">SCALE.</span></h2>
             <p style="font-size: 24px; font-weight: 700;">team.restround@gmail.com</p>
             <div style="margin-top: 40px; color: var(--text-grey); text-transform: uppercase; letter-spacing: 4px; font-size: 14px;">Engineered for the 24/7 Fighter</div>
         </div>
