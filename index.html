@@ -201,7 +201,7 @@
         .gift-list li { font-size: 14px; color: var(--text-grey); display: flex; align-items: center; gap: 8px; }
         .gift-list i { color: var(--primary-lime); font-size: 10px; }
 
-        /* PARTNERSHIP OPTION CARDS */
+        /* PARTNERSHIP STYLES */
         .option-badge {
             display: inline-block;
             font-family: 'Montserrat';
@@ -233,6 +233,7 @@
         .option-card ul li { font-size: 14px; color: var(--text-grey); padding: 7px 0; border-bottom: 1px solid #1a1a1a; display: flex; gap: 10px; align-items: flex-start; }
         .option-card ul li:last-child { border-bottom: none; }
         .option-card ul li i { color: var(--primary-lime); font-size: 11px; margin-top: 4px; flex-shrink: 0; }
+
         .or-divider {
             display: flex;
             flex-direction: column;
@@ -256,7 +257,7 @@
             background: var(--border-grey);
         }
 
-        /* PRODUCT GRID on page 17b */
+        /* PRODUCT MINI GRID */
         .product-mini-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -272,12 +273,7 @@
             transition: all 0.3s ease;
         }
         .product-mini-card:hover { border-color: var(--primary-lime); transform: translateY(-4px); }
-        .product-mini-img {
-            width: 100%;
-            aspect-ratio: 1/1;
-            overflow: hidden;
-            background: var(--mid-grey);
-        }
+        .product-mini-img { width: 100%; aspect-ratio: 1/1; overflow: hidden; background: var(--mid-grey); }
         .product-mini-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
         .product-mini-info { padding: 14px; }
         .product-mini-info h4 { font-family: 'Montserrat'; font-weight: 900; font-size: 12px; text-transform: uppercase; color: var(--text-white); margin-bottom: 4px; letter-spacing: 0.5px; }
@@ -325,7 +321,7 @@
                 <a href="#slide17b" class="index-item"><span class="index-num">16</span><span class="index-label">The Partnership</span></a>
                 <a href="#slide17c" class="index-item"><span class="index-num">17</span><span class="index-label">The Full Arsenal</span></a>
                 <a href="#slide18" class="index-item"><span class="index-num">18</span><span class="index-label">Roadmap to SCALE</span></a>
-                <a href="#slide19" class="index-item"><span class="index-num">19</span><span class="index-label">The Ask</span></a>
+                <a href="#slide19b" class="index-item"><span class="index-num">19</span><span class="index-label">Bangtao Products</span></a>
             </div>
         </div>
     </section>
@@ -559,7 +555,7 @@
             <h2 class="product-focus-title">Stay in <span>the Game</span></h2>
             <div class="grid-3">
                 <div class="card"><div class="image-container"><img src="https://restround.co/cdn/shop/files/80ml_bottle_copy-2_copy1_55e022a2-8ef9-4f39-b9a1-c619c7d65302.jpg" alt="Spray"></div><h3 style="margin-top:20px;">HOCL Spray</h3><p>The medical standard for instant mat pathogen elimination.</p></div>
-                <div class="card" style="border-color: var(--primary-lime);"><div class="image-container"><img src="https://i.postimg.cc/wB7hjxPR/b2e30042-e2b2-44a0-bec3-2119da471fa2.jpg" alt="Wipes"></div><h3 style="margin-top:20px;">Defense Wipes</h3><p>High-saturation tactical decon when the shower is miles away.</p></div>
+                <div class="card" style="border-color: var(--primary-lime);"><div class="image-container"><img src="https://i.postimg.cc/wB7hjxPR/b2e30042-e2b2-44a0-bec3-2119da471fa2.jpg" alt="Wipes"></div><h3 style="margin-top:20px;">Defense Wipes</h3><p>High-saturation tactical decon when the shower is miles away.</p><div style="margin-top:12px;display:inline-block;padding:5px 12px;background:rgba(215,223,34,0.08);border:1px solid var(--primary-lime);border-radius:3px;font-family:'Montserrat';font-weight:900;font-size:11px;color:var(--primary-lime);letter-spacing:2px;text-transform:uppercase;">MOQ 5,000 units</div></div>
                 <div class="card"><div class="image-container"><img src="https://i.postimg.cc/s2QhR6QH/Gemini-Generated-Image-aa03k7aa03k7aa03-copy.png" alt="Laundry"></div><h3 style="margin-top:20px;">Laundry Sheets</h3><p>Deep-clean gear reset specifically engineered for Gi and Nogi fabrics.</p></div>
             </div>
         </div>
@@ -586,7 +582,7 @@
                 <div class="image-container">
                     <img src="https://cdn.shopify.com/s/files/1/0686/2585/8648/files/3ca02310-65b1-4bf7-81d9-66366b65c547.png?v=1777637894" alt="Electrolytes">
                 </div>
-                <div><h3>Probiotic Electrolytes</h3><p>Internal hygiene. Fueling the internal microbiome to protect the external skin barrier during extreme sweat cycles.</p></div>
+                <div><h3>Probiotic Electrolytes</h3><p>Internal hygiene. Fueling the internal microbiome to protect the external skin barrier during extreme sweat cycles.</p><div style="margin-top:16px;display:inline-block;padding:5px 12px;background:rgba(215,223,34,0.08);border:1px solid var(--primary-lime);border-radius:3px;font-family:'Montserrat';font-weight:900;font-size:11px;color:var(--primary-lime);letter-spacing:2px;text-transform:uppercase;">MOQ 5,000 units</div></div>
             </div>
         </div>
     </section>
@@ -681,8 +677,8 @@
                 <!-- OPTION B -->
                 <div class="option-card">
                     <div class="option-badge opt-b">Option B — Role</div>
-                    <div class="option-title">Product Director<br><span>at Bangtao</span></div>
-                    <p style="font-size: 15px; margin-bottom: 4px;">A role inside Bangtao as Product Director — contributing immediately with existing skills in branding, e-commerce, and product development while building the REST ROUND™ ecosystem from within.</p>
+                    <div class="option-title">Product Development<br><span>Role at Bangtao</span></div>
+                    <p style="font-size: 15px; margin-bottom: 4px;">A Product Development role inside Bangtao — contributing immediately with existing skills in branding, e-commerce, and product development while building the REST ROUND™ ecosystem from within.</p>
                     <ul>
                         <li><i class="fa-solid fa-circle-check"></i> Immediate contribution in e-commerce, product strategy & brand direction</li>
                         <li><i class="fa-solid fa-circle-check"></i> Deep learning of Bangtao's operational and commercial infrastructure</li>
@@ -703,7 +699,7 @@
         <div class="slide-content">
             <div class="tag">The Full REST ROUND™ Ecosystem</div>
             <h2 class="slide-title">The Full<br><span style="color: var(--primary-lime);">Arsenal</span></h2>
-            <p style="margin-bottom: 8px;">11 products engineered around the 24/7 combat athlete operating system — from first training to last rep.</p>
+            <p style="margin-bottom: 8px;">11 products engineered around the 24/7 combat athlete operating system.</p>
 
             <div class="product-mini-grid">
                 <div class="product-mini-card">
@@ -808,39 +804,78 @@
         </div>
     </section>
 
-    <!-- 18: ROADMAP TO SCALE (UPDATED) -->
+    <!-- 18: ROADMAP TO SCALE — UPDATED -->
     <section id="slide18">
         <div class="slide-content">
             <h2 class="slide-title">The Roadmap to SCALE</h2>
             <div class="roadmap">
-                <div class="step">
-                    <h3>APR</h3>
-                    <p>HOCL Spray Live.</p>
-                </div>
-                <div class="step">
-                    <h3>JUN</h3>
-                    <p>Laundry Sheets.</p>
-                </div>
-                <div class="step">
-                    <h3>JUL</h3>
-                    <p>Stay tuned.</p>
-                </div>
+                <div class="step"><h3>APR</h3><p>HOCL Spray Live.</p></div>
+                <div class="step"><h3>JUN</h3><p>Laundry Sheets.</p></div>
+                <div class="step"><h3>JUL</h3><p>Stay tuned.</p></div>
             </div>
         </div>
     </section>
 
-    <!-- 19: THE ASK -->
-    <section id="slide19">
+    <!-- 19B: BANGTAO PRODUCTS I CAN DEVELOP -->
+    <section id="slide19b">
+        <div class="glow" style="bottom: 0; left: -10%;"></div>
         <div class="slide-content">
-            <div class="card" style="border: 2px solid var(--primary-lime); text-align: center; padding: 60px;">
-                <h2 style="font-size: 48px;">Strategic Opportunity</h2>
-                <div class="tag">Founder Equity Stake</div>
-                <h3 style="font-size: 36px; margin-bottom: 20px;">10% — 20% EQUITY</h3>
-                <p style="font-size: 20px;">Seeking partners to accelerate global distribution and own the combat hygiene category.</p>
-                <div class="highlight-box">
-                    <p style="color: var(--primary-lime); font-weight: 900; text-transform: uppercase;">100% Founder Product Development Control</p>
-                    <p style="font-size:14px; margin-top:10px;">Ensuring the uncompromising standard of the REST ROUND™ formula as we scale.</p>
+            <div class="tag">Product Development Role — Immediate Contributions</div>
+            <h2 class="slide-title">What I Can<br><span style="color:var(--primary-lime);">Build for Bangtao</span></h2>
+            <p style="margin-bottom: 32px; max-width: 700px;">Leveraging existing supplier networks and product development experience — here are products I can bring to Bangtao from day one.</p>
+
+            <div class="grid-3">
+                <!-- RING JACK -->
+                <div class="card" style="border-color: var(--primary-lime); padding: 0; overflow: hidden;">
+                    <div class="image-container" style="border-radius: 8px 8px 0 0; border: none; aspect-ratio: 4/3;">
+                        <img src="https://cbu01.alicdn.com/img/ibank/O1CN01gLDtnR1aZ92J8b0Ef_!!2215697163343-0-cib.jpg" alt="Ring Jack">
+                    </div>
+                    <div style="padding: 24px;">
+                        <div style="font-size:10px;font-weight:900;color:var(--primary-lime);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;">Equipment</div>
+                        <h3 style="margin-bottom: 10px;">Ring Jack</h3>
+                        <p style="font-size: 14px;">Heavy-duty adjustable ring jack — essential gym infrastructure. Custom branded for Bangtao with premium finish and logo placement.</p>
+                        <div style="margin-top: 14px; display: flex; gap: 8px; flex-wrap: wrap;">
+                            <span style="padding:4px 10px;background:rgba(215,223,34,0.08);border:1px solid #333;border-radius:3px;font-size:11px;font-weight:700;color:var(--text-grey);text-transform:uppercase;letter-spacing:1px;">B2B Gym Sales</span>
+                            <span style="padding:4px 10px;background:rgba(215,223,34,0.08);border:1px solid #333;border-radius:3px;font-size:11px;font-weight:700;color:var(--text-grey);text-transform:uppercase;letter-spacing:1px;">Retail / E-com</span>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- RASHGUARD BAG -->
+                <div class="card" style="padding: 0; overflow: hidden;">
+                    <div class="image-container" style="border-radius: 8px 8px 0 0; border: none; aspect-ratio: 4/3;">
+                        <img src="https://cbu01.alicdn.com/img/ibank/O1CN01fw3GtM1COZ3Uz58qY_!!2216627320071-0-cib.jpg" alt="Rashguard Bag">
+                    </div>
+                    <div style="padding: 24px;">
+                        <div style="font-size:10px;font-weight:900;color:var(--primary-lime);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;">Gear</div>
+                        <h3 style="margin-bottom: 10px;">Rashguard Bag</h3>
+                        <p style="font-size: 14px;">Dedicated gear bag engineered for rashguards and No-Gi kit. Ventilated, compartmentalised, branded for the Bangtao identity.</p>
+                        <div style="margin-top: 14px; display: flex; gap: 8px; flex-wrap: wrap;">
+                            <span style="padding:4px 10px;background:rgba(215,223,34,0.08);border:1px solid #333;border-radius:3px;font-size:11px;font-weight:700;color:var(--text-grey);text-transform:uppercase;letter-spacing:1px;">Fighter Essential</span>
+                            <span style="padding:4px 10px;background:rgba(215,223,34,0.08);border:1px solid #333;border-radius:3px;font-size:11px;font-weight:700;color:var(--text-grey);text-transform:uppercase;letter-spacing:1px;">Fan Lifestyle</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TOTE BAG -->
+                <div class="card" style="padding: 0; overflow: hidden;">
+                    <div class="image-container" style="border-radius: 8px 8px 0 0; border: none; aspect-ratio: 4/3;">
+                        <img src="https://cbu01.alicdn.com/img/ibank/O1CN01RdWnhu1XNkU0myk1w_!!2208913202912-0-cib.jpg" alt="Tote Bag">
+                    </div>
+                    <div style="padding: 24px;">
+                        <div style="font-size:10px;font-weight:900;color:var(--primary-lime);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;">Lifestyle</div>
+                        <h3 style="margin-bottom: 10px;">Tote Bag</h3>
+                        <p style="font-size: 14px;">Premium branded canvas tote for gym, travel, and everyday carry. A low-barrier entry product that extends Bangtao's brand into daily life.</p>
+                        <div style="margin-top: 14px; display: flex; gap: 8px; flex-wrap: wrap;">
+                            <span style="padding:4px 10px;background:rgba(215,223,34,0.08);border:1px solid #333;border-radius:3px;font-size:11px;font-weight:700;color:var(--text-grey);text-transform:uppercase;letter-spacing:1px;">Merch / Gift</span>
+                            <span style="padding:4px 10px;background:rgba(215,223,34,0.08);border:1px solid #333;border-radius:3px;font-size:11px;font-weight:700;color:var(--text-grey);text-transform:uppercase;letter-spacing:1px;">Brand Reach</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight-box" style="margin-top: 30px;">
+                <p style="color: var(--primary-lime); font-weight: 900; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">These are just the start — existing supplier relationships mean fast turnaround, competitive MOQ, and immediate brand-ready production.</p>
             </div>
         </div>
     </section>
