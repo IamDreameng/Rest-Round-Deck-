@@ -22,6 +22,8 @@
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
+        html { background-color: #000000; min-height: 100%; }
+
         body {
             background-color: var(--bg-black);
             color: var(--text-white);
@@ -207,6 +209,9 @@
                     <a href="#slide19" class="index-item" onclick="scrollToSlide(18)"><span class="index-num">17</span><span class="index-label">Roadmap to Scale</span></a>
                     <a href="#slide20" class="index-item" onclick="scrollToSlide(19)"><span class="index-num">18</span><span class="index-label">Objective Scale Math</span></a>
                     <a href="#slide21" class="index-item" onclick="scrollToSlide(20)"><span class="index-num">19</span><span class="index-label">The Ask</span></a>
+                    <a href="#slide21b" class="index-item" onclick="scrollToSlide(21)"><span class="index-num">20</span><span class="index-label">Bangtao's Role</span></a>
+                    <a href="#slide21c" class="index-item" onclick="scrollToSlide(22)"><span class="index-num">21</span><span class="index-label">Company Structure</span></a>
+                    <a href="#slide21d" class="index-item" onclick="scrollToSlide(23)"><span class="index-num">22</span><span class="index-label">China → Thailand: Step by Step</span></a>
                 </div>
             </div>
         </section>
@@ -499,12 +504,12 @@
         <section id="slide19">
             <div class="slide-content">
                 <h2 class="slide-title">Roadmap to Scale</h2>
-                <p style="margin-bottom: 10px;">One product drop per month, backed by strong creative and steady DTC demand.</p>
+                <p style="margin-bottom: 10px;">Rolling product drops through the year, backed by strong creative and steady DTC demand.</p>
                 <div class="roadmap">
-                    <div class="step"><h3>Apr</h3><p>HOCl Spray live</p></div>
-                    <div class="step"><h3>May</h3><p>Defense Wipes</p></div>
-                    <div class="step"><h3>Jun</h3><p>Laundry Sheets</p></div>
-                    <div class="step"><h3>Jul</h3><p>Fuel & Focus sprint</p></div>
+                    <div class="step"><h3>Apr</h3><p>HOCl Spray, Mouthguard Cleanser</p></div>
+                    <div class="step"><h3>Jun</h3><p>Soap</p></div>
+                    <div class="step"><h3>Jul</h3><p>Laundry Sheets</p></div>
+                    <div class="step"><h3>Aug</h3><p>Fight IQ</p></div>
                 </div>
             </div>
         </section>
@@ -681,6 +686,109 @@
                         <p>The earn-in only pays out if this list keeps happening. This turns "sharing" into a job description both sides can point back to — and whatever milestone metric we agree on should measure exactly these actions.</p>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- 21c: COMPANY STRUCTURE -->
+        <section id="slide21c">
+            <div class="slide-content">
+                <div class="tag">Legal & Capital Structure</div>
+                <h2 class="slide-title">Company Structure</h2>
+                <p style="margin-bottom: 30px; max-width: 800px;">
+                    One cap table at the top, with operating entities beneath it built for where the work actually happens: manufacturing in China, market access in Thailand, and DTC sales run from the US.
+                </p>
+
+                <!-- INVESTOR ROW -->
+                <div style="display: flex; justify-content: center; margin-bottom: 8px;">
+                    <div class="card" style="max-width: 340px; text-align: center; border-color: var(--primary-lime);">
+                        <div class="tag" style="margin-bottom: 8px;">Capital In</div>
+                        <h3 style="margin-bottom: 4px;">Bangtao</h3>
+                        <p style="font-size: 13px;">Wires USD investment · receives equity</p>
+                    </div>
+                </div>
+                <div style="text-align: center; margin: 4px 0;"><i class="fa-solid fa-chevron-down" style="color: var(--primary-lime);"></i></div>
+
+                <!-- US PARENT -->
+                <div style="display: flex; justify-content: center; margin-bottom: 8px;">
+                    <div class="card" style="max-width: 460px; text-align: center; border: 2px solid var(--primary-lime); background: rgba(215,223,34,0.04);">
+                        <div class="tag">US Parent Company</div>
+                        <h3 style="font-size: 22px; margin-bottom: 6px;">REST ROUND Inc.</h3>
+                        <p style="font-size: 13px;">Brand, formula & IP owner · runs DTC Shopify store · Founder = majority shareholder · Bangtao = 20% base + up to 15% earn-in</p>
+                    </div>
+                </div>
+                <div style="text-align: center; margin: 4px 0;"><i class="fa-solid fa-chevron-down" style="color: var(--primary-lime);"></i></div>
+
+                <!-- BRANCHES -->
+                <div class="grid-3" style="align-items: stretch;">
+                    <div class="card">
+                        <div class="tag">Manufacturing</div>
+                        <h3>China OpCo <span style="font-size: 10px; color: #666; text-transform: none; font-weight: 400;">(existing)</span></h3>
+                        <p style="font-size: 13px;">Product development & sourcing. Funded by the US parent via intercompany capital — pays vendors from its own business account, never personal.</p>
+                    </div>
+                    <div class="card" style="border-color: var(--primary-lime);">
+                        <div class="tag">Market Access</div>
+                        <h3>Thailand Entity <span style="font-size: 10px; color: #666; text-transform: none; font-weight: 400;">(new or Bangtao's)</span></h3>
+                        <p style="font-size: 13px;">Holds the Thai FDA cosmetic import notification — legally required to be a Thai-registered entity. Doubles as Bangtao's local investment vehicle.</p>
+                    </div>
+                    <div class="card" style="opacity: 0.6; border-style: dashed;">
+                        <div class="tag">Deferred</div>
+                        <h3>Australia</h3>
+                        <p style="font-size: 13px;">No entity yet. Served via DTC export from the US or a local distributor until volume justifies a Pty Ltd.</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box" style="margin-top: 25px;">
+                    <p style="color: var(--primary-lime); font-weight: 900; text-transform: uppercase; font-size: 13px;">How the investment actually moves</p>
+                    <p style="font-size: 13px; margin-top: 8px;">1) Bangtao wires USD into REST ROUND Inc.'s US business account, against a signed stock purchase / shareholders' agreement. 2) The US parent capitalizes China OpCo through an intercompany loan or equity injection — this isn't a pass-through step, China OpCo actively runs the factory relationships, staff, and local costs, so it needs its own working capital regardless. 3) China OpCo pays manufacturers directly, in RMB or USD, with proper invoices on file. Money never routes through a personal account at any step.</p>
+                </div>
+                <p style="margin-top: 14px; font-size: 11px; color: #666;">This is a directional structure, not legal or tax advice — confirm entity setup, intercompany terms, and Thai/US filing specifics with a cross-border corporate lawyer and accountant before moving capital.</p>
+            </div>
+        </section>
+
+        <!-- 21d: CHINA TO THAILAND STEP-BY-STEP -->
+        <section id="slide21d">
+            <div class="slide-content">
+                <div class="tag">Regulatory Pathway</div>
+                <h2 class="slide-title">China → Thailand: Step by Step</h2>
+                <p style="margin-bottom: 20px; max-width: 850px;">
+                    Same origin (China OpCo) and same destination (REST ROUND Thailand). HOCl itself doesn't force a heavier regulatory track — plenty of HOCl facial sprays are sold as ordinary cosmetics worldwide. What matters is <strong>how the product is marketed</strong>, not the ingredient.
+                </p>
+
+                <div class="grid-2" style="align-items: start;">
+                    <div class="card">
+                        <div class="tag">Soap</div>
+                        <h3>General Cosmetic Notification</h3>
+                        <ul style="list-style: none; font-size: 13px; color: var(--text-grey);">
+                            <li style="margin-bottom: 10px;"><strong style="color:var(--text-white);">1.</strong> Manufacture at China OpCo; compile INCI ingredient list & facility GMP certificate</li>
+                            <li style="margin-bottom: 10px;"><strong style="color:var(--text-white);">2.</strong> REST ROUND Inc. issues a Letter of Authorization to REST ROUND Thailand as notifier</li>
+                            <li style="margin-bottom: 10px;"><strong style="color:var(--text-white);">3.</strong> Naming/claims check — avoid prohibited terms so it stays on the fast track</li>
+                            <li style="margin-bottom: 10px;"><strong style="color:var(--text-white);">4.</strong> REST ROUND Thailand submits notification via Thai FDA's SKYNET system, ≥15 days before import</li>
+                            <li style="margin-bottom: 10px;"><strong style="color:var(--text-white);">5.</strong> Approval: ~7–14 working days for general cosmetics · notification valid 3 years</li>
+                            <li style="margin-bottom: 10px;"><strong style="color:var(--text-white);">6.</strong> Export from China (invoice, packing list, GMP cert, COA) → customs clearance at an authorized cosmetics checkpoint</li>
+                            <li style="margin-bottom: 10px;"><strong style="color:var(--text-white);">7.</strong> Apply Thai-language labeling, then release to Bangtao's network / DTC</li>
+                        </ul>
+                    </div>
+
+                    <div class="card" style="border-color: var(--primary-lime);">
+                        <div class="tag">HOCl Spray</div>
+                        <h3>Controlled Cosmetic Notification</h3>
+                        <ul style="list-style: none; font-size: 13px; color: var(--text-grey);">
+                            <li style="margin-bottom: 10px;"><strong style="color:var(--primary-lime);">1.</strong> Manufacture at China OpCo; compile full formula (INCI names, concentrations) & facility GMP certificate</li>
+                            <li style="margin-bottom: 10px;"><strong style="color:var(--primary-lime);">2.</strong> Frame the product as a hygiene/refresher mist, not a medical disinfectant — this keeps it under the Cosmetics Act</li>
+                            <li style="margin-bottom: 10px;"><strong style="color:var(--primary-lime);">3.</strong> Prepare supporting safety data (MSDS-style) for the active ingredient, since HOCl falls under Controlled Cosmetics — extra documentation, same Act</li>
+                            <li style="margin-bottom: 10px;"><strong style="color:var(--primary-lime);">4.</strong> REST ROUND Inc. issues a Letter of Authorization to REST ROUND Thailand as notifier</li>
+                            <li style="margin-bottom: 10px;"><strong style="color:var(--primary-lime);">5.</strong> REST ROUND Thailand submits via SKYNET; Controlled Cosmetics take longer than General but are still notifications, not licenses</li>
+                            <li style="margin-bottom: 10px;"><strong style="color:var(--primary-lime);">6.</strong> Export from China → customs clearance at an authorized cosmetics checkpoint</li>
+                            <li style="margin-bottom: 10px;"><strong style="color:var(--primary-lime);">7.</strong> Apply Thai-language labeling, then release to Bangtao's network / DTC</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="highlight-box" style="margin-top: 20px;">
+                    <p style="color: var(--primary-lime); font-weight: 900; text-transform: uppercase; font-size: 13px;">Claims decide the track, not the ingredient</p>
+                    <p style="font-size: 13px; margin-top: 8px;">Thai FDA classifies by legal definition and claims, not marketing category — a product stays a cosmetic as long as it's positioned for appearance or hygiene, not treated as a medicine. HOCl itself is fine; language like "medical standard" or "pathogen elimination" is what risks pushing a product toward a disinfectant/medical classification instead. Names like <strong>Antibiotic Soap</strong> also deserve a look — Thai FDA guidelines flag terms like "Disinfectant," "Kill," "Germ," and "Antibacterial" in cosmetic naming. Reframing around hygiene/refresh language (the same way most HOCl facial-spray brands position theirs) is what keeps both products on the faster cosmetic track.</p>
+                </div>
+                <p style="margin-top: 14px; font-size: 11px; color: #666;">Directional, not legal advice — timelines, fees, and document lists shift; confirm the current process and your specific product claims with a Thai regulatory consultant before filing.</p>
             </div>
         </section>
 
